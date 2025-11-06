@@ -7,7 +7,10 @@ const Statement = dynamic(() => import('@/components/sections/Statement'));
 const Contact = dynamic(() => import('@/components/sections/Contact'));*/
 const Unknown = dynamic(() => import("../components/sections/Unknown"));
 
-export const sectionsRegistry: Record<string, React.ComponentType<any>> = {
+export const sectionsRegistry: Record<
+  string,
+  React.ComponentType<Record<string, unknown>>
+> = {
   hero_section: Hero,
   /*   services: Services,
   cases: Cases,
