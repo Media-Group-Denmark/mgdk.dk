@@ -11,7 +11,7 @@ export default async function Page({
   return (
     <>
       {sections.map((s, i) => {
-        const Component = resolveSectionComponent((s as any).type);
+        const Component = resolveSectionComponent(s.type);
         return <Component key={i} {...s} />;
       })}
     </>

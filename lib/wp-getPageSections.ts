@@ -1,7 +1,16 @@
 import { wp } from "./wp-server";
-import type { Section } from "@/types/sections";
+import type {
+  Section,
+  WordPressButton,
+  WordPressCard,
+  WordPressCase,
+  WordPressFlexibleContentRow,
+  WordPressPage,
+  WordPressImage,
+} from "@/types/sections";
+import type { ButtonVariant } from "@/types/buttonVariants";
 
-function imageToUrl(img: any): string | undefined {
+function imageToUrl(img: WordPressImage): string | undefined {
   if (!img) return undefined;
   if (typeof img === "number") return undefined;
   if (typeof img === "string") return img;
@@ -12,32 +21,33 @@ function imageToUrl(img: any): string | undefined {
 export async function getPageSectionsBySlug(
   slug?: string
 ): Promise<{ id: number; title: string; sections: Section[] }> {
-  let page: any;
+  let page: WordPressPage | undefined;
 
   if (!slug) {
-    page = await wp(`/wp/v2/pages/119?_fields=id,title,acf`);
+    page = (await wp(`/wp/v2/pages/119?_fields=id,title,acf`)) as WordPressPage;
   } else {
-    const list = await wp(
+    const list = (await wp(
       `/wp/v2/pages?slug=${encodeURIComponent(slug)}&_fields=id,title,acf`
-    );
+    )) as WordPressPage[];
     page = list?.[0];
   }
 
   const title = page?.title?.rendered ?? "";
-  const rawSections: any[] = page?.acf?.flexible_content ?? [];
+  const rawSections: WordPressFlexibleContentRow[] =
+    page?.acf?.flexible_content ?? [];
   const sections: Section[] = rawSections.map((row) => {
-    const layout = row?.acf_fc_layout as string;
-    switch (layout) {
-      case "hero_section":
+    switch (row.acf_fc_layout) {
+      case "hero_section": {
         return {
           type: "hero_section",
-          title: row?.title ?? "",
-          text: row?.text ?? "",
-          image: imageToUrl(row?.image),
-          buttons: Array.isArray(row?.buttons)
-            ? row.buttons.map((b: any) => ({
+          title: row.title ?? "",
+          text: row.text ?? "",
+          image: imageToUrl(row.image),
+          buttons: Array.isArray(row.buttons)
+            ? row.buttons.map((b: WordPressButton) => ({
                 button_text: b?.button_text ?? "",
-                button_variant: b?.button_variant ?? "",
+                button_variant: (b?.button_variant ??
+                  "primary") as ButtonVariant,
                 button_url:
                   typeof b?.button_url === "string"
                     ? b.button_url
@@ -45,22 +55,23 @@ export async function getPageSectionsBySlug(
               }))
             : [],
           /* profile:
-            row?.hero_profile_name || row?.hero_profile_email
+            row.hero_profile_name || row.hero_profile_email
               ? {
-                  name: row?.hero_profile_name ?? "",
-                  title: row?.hero_profile_title ?? "",
-                  email: row?.hero_profile_email ?? "",
-                  image: imageToUrl(row?.hero_profile_image),
+                  name: row.hero_profile_name ?? "",
+                  title: row.hero_profile_title ?? "",
+                  email: row.hero_profile_email ?? "",
+                  image: imageToUrl(row.hero_profile_image),
                 }
               : null, */
         };
+      }
 
-      case "services_grid_section":
+      case "services_grid_section": {
         return {
           type: "services_grid_section",
-          heading: row?.heading ?? "",
-          cards: Array.isArray(row?.cards)
-            ? row.cards.map((c: any) => ({
+          heading: row.heading ?? "",
+          cards: Array.isArray(row.cards)
+            ? row.cards.map((c: WordPressCard) => ({
                 title: c?.card_title ?? "",
                 text: c?.card_text ?? "",
                 linkLabel: c?.card_link_label ?? "",
@@ -71,13 +82,14 @@ export async function getPageSectionsBySlug(
               }))
             : [],
         };
+      }
 
-      case "cases_section":
+      case "cases_section": {
         return {
           type: "cases_section",
-          title: row?.section_title ?? "",
-          items: Array.isArray(row?.items)
-            ? row.items.map((it: any) => ({
+          title: row.section_title ?? "",
+          items: Array.isArray(row.items)
+            ? row.items.map((it: WordPressCase) => ({
                 title: it?.case_title ?? "",
                 excerpt: it?.case_excerpt ?? "",
                 image: imageToUrl(it?.case_image),
@@ -88,30 +100,42 @@ export async function getPageSectionsBySlug(
               }))
             : [],
         };
+      }
 
-      case "statement_section":
+      case "statement_section": {
         return {
           type: "statement_section",
-          highlight: row?.statement_highlight ?? "",
-          body: row?.statement_body ?? "",
+          highlight: row.statement_highlight ?? "",
+          body: row.statement_body ?? "",
           buttonLabel:
-            row?.statement_button?.title ?? row?.statement_button_label ?? "",
+            (typeof row.statement_button === "object" &&
+              row.statement_button !== null &&
+              "title" in row.statement_button &&
+              row.statement_button.title) ||
+            row.statement_button_label ||
+            "",
           buttonUrl:
-            typeof row?.statement_button === "string"
+            typeof row.statement_button === "string"
               ? row.statement_button
-              : row?.statement_button?.url ?? "",
-          background: row?.statement_background ?? "",
+              : typeof row.statement_button === "object"
+              ? row.statement_button?.url ?? ""
+              : "",
+          background: row.statement_background ?? "",
         };
+      }
 
-      case "contact_section":
+      case "contact_section": {
         return {
           type: "contact_section",
-          title: row?.contact_heading ?? "",
-          formShortcode: row?.contact_form_shortcode ?? "",
+          title: row.contact_heading ?? "",
+          formShortcode: row.contact_form_shortcode ?? "",
         };
+      }
 
-      default:
-        return { type: layout as any } as Section;
+      default: {
+        const layout = (row as { acf_fc_layout: string }).acf_fc_layout;
+        return { type: layout } as Section;
+      }
     }
   });
 
