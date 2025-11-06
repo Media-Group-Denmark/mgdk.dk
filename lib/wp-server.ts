@@ -9,6 +9,7 @@ export async function wp(endpoint: string, init?: RequestInit) {
   const res = await fetch(`${base}${endpoint}`, {
     ...init,
     headers: { Authorization: `Basic ${auth}`, ...(init?.headers || {}) },
+    next: { ...(init as any)?.next },
   });
   if (!res.ok) throw new Error(`WP ${res.status}: ${await res.text()}`);
   return res.json();
