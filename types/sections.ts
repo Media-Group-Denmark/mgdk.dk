@@ -97,7 +97,7 @@ export type Hero = {
 
 export type ServicesGrid = {
   type: "services_grid_section";
-  cards: {
+  service_cards: {
     card_title?: string;
     card_text?: string;
     background_color?: string;

@@ -1,12 +1,12 @@
 import { wp } from "./wp-server";
 import type {
   Section,
-  WordPressButton,
   WordPressCard,
   WordPressCase,
   WordPressFlexibleContentRow,
   WordPressPage,
   WordPressImage,
+  WordPressButton,
 } from "@/types/sections";
 import type { ButtonVariant } from "@/types/buttonVariants";
 
@@ -35,13 +35,14 @@ export async function getPageSectionsBySlug(
   const title = page?.title?.rendered ?? "";
   const rawSections: WordPressFlexibleContentRow[] =
     page?.acf?.flexible_content ?? [];
+
   const sections: Section[] = rawSections.map((row) => {
     switch (row.acf_fc_layout) {
       case "hero_section": {
         return {
           type: "hero_section",
           title: row.title ?? "",
-          text: row.text ?? "",
+          subtitle: row.text ?? "",
           image: imageToUrl(row.image),
           buttons: Array.isArray(row.buttons)
             ? row.buttons.map((b: WordPressButton) => ({
@@ -51,34 +52,45 @@ export async function getPageSectionsBySlug(
                 button_url:
                   typeof b?.button_url === "string"
                     ? b.button_url
-                    : b?.button_url?.url ?? "",
+                    : typeof b?.button_url === "object" && b?.button_url?.url
+                    ? b.button_url.url
+                    : "",
               }))
             : [],
-          /* profile:
-            row.hero_profile_name || row.hero_profile_email
-              ? {
-                  name: row.hero_profile_name ?? "",
-                  title: row.hero_profile_title ?? "",
-                  email: row.hero_profile_email ?? "",
-                  image: imageToUrl(row.hero_profile_image),
-                }
-              : null, */
+          contact_card: row.contact_card
+            ? {
+                name: row.contact_card.name ?? "",
+                title: row.contact_card.title ?? "",
+                phone_number: row.contact_card.phone_number ?? "",
+                mail: row.contact_card.mail ?? "",
+                image: imageToUrl(row.contact_card.image),
+              }
+            : null,
         };
       }
 
       case "services_grid_section": {
         return {
           type: "services_grid_section",
-          heading: row.heading ?? "",
-          cards: Array.isArray(row.cards)
-            ? row.cards.map((c: WordPressCard) => ({
-                title: c?.card_title ?? "",
-                text: c?.card_text ?? "",
-                linkLabel: c?.card_link_label ?? "",
-                linkUrl:
-                  typeof c?.card_link_url === "string"
-                    ? c.card_link_url
-                    : c?.card_link_url?.url ?? "",
+          service_cards: Array.isArray(row.service_cards)
+            ? row.service_cards.map((c: WordPressCard) => ({
+                card_title: c?.card_title ?? "",
+                card_text: c?.card_text ?? "",
+                background_color: c?.background_color ?? "",
+                buttons: Array.isArray(c?.buttons)
+                  ? c?.buttons.map((b: WordPressButton) => ({
+                      button_text: b?.button_text ?? "",
+                      button_variant: (b?.button_variant ??
+                        "primary") as ButtonVariant,
+                      button_url:
+                        typeof b?.button_url === "string"
+                          ? b.button_url
+                          : typeof b?.button_url === "object" &&
+                            b?.button_url?.url
+                          ? b.button_url.url
+                          : "",
+                    }))
+                  : [],
               }))
             : [],
         };
