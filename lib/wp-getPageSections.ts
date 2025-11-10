@@ -2,11 +2,11 @@ import { wp } from "./wp-server";
 import type {
   Section,
   WordPressCard,
-  WordPressCase,
   WordPressFlexibleContentRow,
   WordPressPage,
   WordPressImage,
   WordPressButton,
+  WordPressCaseCard,
 } from "@/types/sections";
 import type { ButtonVariant } from "@/types/buttonVariants";
 
@@ -96,19 +96,20 @@ export async function getPageSectionsBySlug(
         };
       }
 
-      case "cases_section": {
+      case "case_section": {
         return {
-          type: "cases_section",
-          title: row.section_title ?? "",
-          items: Array.isArray(row.items)
-            ? row.items.map((it: WordPressCase) => ({
-                title: it?.case_title ?? "",
-                excerpt: it?.case_excerpt ?? "",
-                image: imageToUrl(it?.case_image),
-                url:
-                  typeof it?.case_link === "string"
-                    ? it.case_link
-                    : it?.case_link?.url ?? "",
+          type: "case_section",
+          title: row.title ?? "",
+          case_cards: Array.isArray(row.case_cards)
+            ? row.case_cards.map((c: WordPressCaseCard) => ({
+                case_title: c?.case_title ?? "",
+                case_text: c?.case_text ?? "",
+                case_url:
+                  typeof c?.case_url === "string"
+                    ? c.case_url
+                    : typeof c?.case_url === "object" && c?.case_url?.url
+                    ? c.case_url.url
+                    : "",
               }))
             : [],
         };
