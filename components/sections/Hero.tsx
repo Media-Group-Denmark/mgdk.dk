@@ -5,17 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import ContactCard from "@/components/ContactCard";
 import { htmlToText } from "@/lib/utils";
-import { ButtonVariant } from "@/types/buttonVariants";
+import type { ButtonType } from "@/types/buttonVariants";
 
 export default function Hero(props: {
   title?: string;
   text?: string;
   image?: string;
-  buttons?: {
-    button_text: string;
-    button_url: string;
-    button_variant: ButtonVariant;
-  }[];
+  buttons?: ButtonType[];
 }) {
   const { title, text, image, buttons = [] } = props;
   return (
@@ -41,7 +37,7 @@ export default function Hero(props: {
             {buttons.map((button) => (
               <Button
                 variant={button.button_variant}
-                size="lg"
+                size="md"
                 key={button.button_text}
               >
                 <Link href={button.button_url}>{button.button_text}</Link>

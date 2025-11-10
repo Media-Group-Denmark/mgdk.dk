@@ -121,11 +121,6 @@
   }
 }
 
-.liquid-glass {
-  border-radius: 34px;
-  background: rgba(0, 0, 0, 0.62);
-
-  background-blend-mode: hard-light;
-  filter: blur(20px);
-  backdrop-filter: blur(40px);
+.font-inter {
+  font-family: var(--font-inter), sans-serif;
 }

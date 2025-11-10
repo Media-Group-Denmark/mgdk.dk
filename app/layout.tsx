@@ -2,11 +2,75 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navigation/navbar-server";
+import localFont from "next/font/local";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
+
+const twkLausanne = localFont({
+  src: [
+    {
+      path: "../public/fonts/TWKLausanne-100.otf",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/TWKLausanne-200.otf",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/TWKLausanne-200italic.otf",
+      weight: "200",
+      style: "italic",
+    },
+    {
+      path: "../public/fonts/TWKLausanne-250.otf",
+      weight: "250",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/TWKLausanne-300.otf",
+      weight: "300",
+      style: "normal",
+    },
+
+    {
+      path: "../public/fonts/TWKLausanne-400.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/TWKLausanne-500.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/TWKLausanne-600.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/TWKLausanne-700.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/TWKLausanne-800.otf",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/TWKLausanne-900.otf",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-twklausanne",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -20,9 +84,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${twkLausanne.variable}`}>
       <body
-        className={`${inter.className} antialiased flex flex-col min-h-screen`}
+        className={`${twkLausanne.className} antialiased flex flex-col min-h-screen`}
       >
         <Navbar />
         {children}

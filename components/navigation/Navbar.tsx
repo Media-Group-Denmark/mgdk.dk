@@ -24,7 +24,7 @@ export function Navbar({ items }: { items: Item[] }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <div className="bg-[#121213] relative z-10">
+    <div className="bg-[#121213] relative z-10 font-inter">
       <div className="h-[62px] px-10 md:px-8 flex justify-between items-center max-w-[1440px] mx-auto ">
         <div
           className="text-white text-[26px] font-[900] z-[100] cursor-pointer"
