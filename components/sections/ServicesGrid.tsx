@@ -38,8 +38,8 @@ export default function ServicesGrid(props: {
   const { service_cards = [] } = props;
 
   return (
-    <div className=" bg-[#F2F2F4]">
-      <div className="px-10 md:px-8 max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 p-1">
+    <div className=" bg-[#F2F2F4] lg:py-5">
+      <div className="lg:px-8 max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 lg:p-1">
         {service_cards.map((card) => {
           const { className: backgroundClass, style: backgroundStyle } =
             getCardBackground(card.background_color);
@@ -49,13 +49,13 @@ export default function ServicesGrid(props: {
               key={card.card_title}
               className={`${backgroundClass} ${
                 card.background_color === "black" ? "text-white" : "text-black"
-              } py-48 px-6 md:rounded-lg m-1`}
+              } py-48 px-6 md:rounded-lg lg:m-1`}
               style={backgroundStyle}
             >
-              <h2 className="text-[36px] text-center font-medium mb-2">
+              <h2 className="text-[36px] md:text-[52px] text-center font-medium mb-2">
                 {card.card_title}
               </h2>
-              <p className="text-[20px] text-center font-[200] mb-6">
+              <p className="text-[20px] md:text-[30px] text-center font-[200] mb-6">
                 {card.card_text}
               </p>
               <div className="flex justify-center gap-4">
