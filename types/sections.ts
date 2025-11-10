@@ -1,4 +1,4 @@
-import type { ButtonVariant } from "./buttonVariants";
+import type { ButtonType } from "./buttonVariants";
 
 // Base WordPress types
 export type WordPressImage =
@@ -19,8 +19,8 @@ export interface WordPressButton {
 export interface WordPressCard {
   card_title?: string;
   card_text?: string;
-  card_link_label?: string;
-  card_link_url?: WordPressLink;
+  background_color?: string;
+  buttons?: WordPressButton[];
 }
 
 export interface WordPressCase {
@@ -37,16 +37,18 @@ export interface WordPressHeroSection {
   text?: string;
   image?: WordPressImage;
   buttons?: WordPressButton[];
-  hero_profile_name?: string;
-  hero_profile_email?: string;
-  hero_profile_title?: string;
-  hero_profile_image?: WordPressImage;
+  contact_card?: {
+    name?: string;
+    title?: string;
+    phone_number?: string;
+    mail?: string;
+    image?: WordPressImage;
+  };
 }
 
 export interface WordPressServicesGridSection {
   acf_fc_layout: "services_grid_section";
-  heading?: string;
-  cards?: WordPressCard[];
+  service_cards?: WordPressCard[];
 }
 
 export interface WordPressCasesSection {
@@ -83,27 +85,23 @@ export type Hero = {
   title: string;
   subtitle?: string;
   image?: string;
-  buttons?: {
-    button_text: string;
-    button_url: string;
-    button_variant: ButtonVariant;
-  }[];
-  profile?: {
+  buttons?: ButtonType[];
+  contact_card?: {
     name?: string;
     title?: string;
-    email?: string;
-    image?: string;
+    phone_number?: string;
+    mail?: string;
+    image?: WordPressImage;
   } | null;
 };
 
 export type ServicesGrid = {
   type: "services_grid_section";
-  heading?: string;
   cards: {
-    title: string;
-    text?: string;
-    linkLabel?: string;
-    linkUrl?: string;
+    card_title?: string;
+    card_text?: string;
+    background_color?: string;
+    buttons?: ButtonType[];
   }[];
 };
 
