@@ -23,11 +23,10 @@ export interface WordPressCard {
   buttons?: WordPressButton[];
 }
 
-export interface WordPressCase {
+export interface WordPressCaseCard {
   case_title?: string;
-  case_excerpt?: string;
-  case_image?: WordPressImage;
-  case_link?: WordPressLink;
+  case_text?: string;
+  case_url?: WordPressLink;
 }
 
 // WordPress input types
@@ -52,9 +51,9 @@ export interface WordPressServicesGridSection {
 }
 
 export interface WordPressCasesSection {
-  acf_fc_layout: "cases_section";
-  section_title?: string;
-  items?: WordPressCase[];
+  acf_fc_layout: "case_section";
+  title?: string;
+  case_cards?: WordPressCaseCard[];
 }
 
 export interface WordPressStatementSection {
@@ -106,9 +105,13 @@ export type ServicesGrid = {
 };
 
 export type Cases = {
-  type: "cases_section";
+  type: "case_section";
   title?: string;
-  items: { title: string; excerpt?: string; image?: string; url?: string }[];
+  case_cards: {
+    case_title?: string;
+    case_text?: string;
+    case_url?: string;
+  }[];
 };
 
 export type Statement = {
