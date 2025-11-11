@@ -137,11 +137,10 @@ export async function getPageSectionsBySlug(
         };
       }
 
-      case "contact_section": {
+      case "contact_formular_section": {
         return {
-          type: "contact_section",
-          title: row.contact_heading ?? "",
-          formShortcode: row.contact_form_shortcode ?? "",
+          type: "contact_formular_section",
+          title: row.title ?? "",
         };
       }
 

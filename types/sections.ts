@@ -64,9 +64,8 @@ export interface WordPressStatementSection {
 }
 
 export interface WordPressContactSection {
-  acf_fc_layout: "contact_section";
-  contact_heading?: string;
-  contact_form_shortcode?: string;
+  acf_fc_layout: "contact_formular_section";
+  title?: string;
 }
 
 export type WordPressFlexibleContentRow =
@@ -120,9 +119,8 @@ export type Statement = {
 };
 
 export type Contact = {
-  type: "contact_section";
+  type: "contact_formular_section";
   title?: string;
-  formShortcode?: string;
 };
 
 export type Section = Hero | ServicesGrid | Cases | Statement | Contact;
