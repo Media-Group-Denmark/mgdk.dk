@@ -5,8 +5,8 @@ const ServicesGrid = dynamic(
   () => import("../components/sections/ServicesGrid")
 );
 const Cases = dynamic(() => import("../components/sections/Cases"));
-/* const Services = dynamic(() => import('@/components/sections/Services'));
-const Statement = dynamic(() => import('@/components/sections/Statement'));
+const Statement = dynamic(() => import("../components/sections/Statement"));
+/* 
 const Contact = dynamic(() => import('@/components/sections/Contact'));*/
 const Unknown = dynamic(() => import("../components/sections/Unknown"));
 
@@ -19,8 +19,8 @@ export const sectionsRegistry: Record<
     Record<string, unknown>
   >,
   case_section: Cases as React.ComponentType<Record<string, unknown>>,
+  statement_section: Statement as React.ComponentType<Record<string, unknown>>,
   /*   services: Services,
-  statement: Statement,
   contact: Contact, */
   // alt andet → Unknown
 };

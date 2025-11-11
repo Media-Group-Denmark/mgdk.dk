@@ -118,22 +118,22 @@ export async function getPageSectionsBySlug(
       case "statement_section": {
         return {
           type: "statement_section",
-          highlight: row.statement_highlight ?? "",
-          body: row.statement_body ?? "",
-          buttonLabel:
-            (typeof row.statement_button === "object" &&
-              row.statement_button !== null &&
-              "title" in row.statement_button &&
-              row.statement_button.title) ||
-            row.statement_button_label ||
-            "",
-          buttonUrl:
-            typeof row.statement_button === "string"
-              ? row.statement_button
-              : typeof row.statement_button === "object"
-              ? row.statement_button?.url ?? ""
-              : "",
-          background: row.statement_background ?? "",
+          title: row.title ?? "",
+          text: row.text ?? "",
+          button: row.button
+            ? {
+                button_text: row.button.button_text ?? "",
+                button_variant: (row.button.button_variant ??
+                  "primary") as ButtonVariant,
+                button_url:
+                  typeof row.button.button_url === "string"
+                    ? row.button.button_url
+                    : typeof row.button.button_url === "object" &&
+                      row.button.button_url?.url
+                    ? row.button.button_url.url
+                    : "",
+              }
+            : undefined,
         };
       }
 

@@ -4,8 +4,8 @@ import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import Link from "next/link";
 import ContactCard from "@/components/ContactCard";
-import { htmlToText } from "@/lib/utils";
 import type { ButtonType } from "@/types/buttonVariants";
+import parse from "html-react-parser";
 
 export default function Hero(props: {
   title?: string;
@@ -27,7 +27,7 @@ export default function Hero(props: {
       <div className="md:absolute md:top-0 md:left-0 flex justify-center items-center h-full px-10 ">
         <LiquidGlass className="w-full max-w-[700px] lg:py-15">
           <h1 className="text-white text-[20px] md:text-[24px] lg:text-[40px] font-normal mb-2">
-            {htmlToText(title)}
+            {parse(title ?? "")}
           </h1>
           <p className="text-[#C5C5C5] text-sm md:text-[15px] mb-4 font-medium">
             {text}
