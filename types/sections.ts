@@ -1,4 +1,4 @@
-import type { ButtonType } from "./buttonVariants";
+import type { ButtonType, ButtonVariant } from "./buttonVariants";
 
 // Base WordPress types
 export type WordPressImage =
@@ -12,7 +12,7 @@ export type WordPressLink = string | { url?: string } | null | undefined;
 
 export interface WordPressButton {
   button_text?: string;
-  button_variant?: string;
+  button_variant?: ButtonVariant;
   button_url?: WordPressLink;
 }
 
@@ -58,11 +58,9 @@ export interface WordPressCasesSection {
 
 export interface WordPressStatementSection {
   acf_fc_layout: "statement_section";
-  statement_highlight?: string;
-  statement_body?: string;
-  statement_button?: WordPressLink | { title?: string; url?: string };
-  statement_button_label?: string;
-  statement_background?: string;
+  title?: string;
+  text?: string;
+  button?: WordPressButton;
 }
 
 export interface WordPressContactSection {
@@ -116,11 +114,9 @@ export type Cases = {
 
 export type Statement = {
   type: "statement_section";
-  highlight: string;
-  body?: string;
-  buttonLabel?: string;
-  buttonUrl?: string;
-  background?: string;
+  title?: string;
+  text?: string;
+  button?: ButtonType;
 };
 
 export type Contact = {
