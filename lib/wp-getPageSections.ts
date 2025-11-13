@@ -7,6 +7,8 @@ import type {
   WordPressImage,
   WordPressButton,
   WordPressCaseCard,
+  WordPressLogoCarouselSection,
+  WordPressLink,
 } from "@/types/sections";
 import type { ButtonVariant } from "@/types/buttonVariants";
 
@@ -66,6 +68,28 @@ export async function getPageSectionsBySlug(
                 image: imageToUrl(row.contact_card.image),
               }
             : null,
+        };
+      }
+
+      case "logo_carousel_section": {
+        return {
+          type: "logo_carousel_section",
+          logos: Array.isArray(row.logos)
+            ? row.logos.map(
+                (l: {
+                  logo_image?: WordPressImage;
+                  logo_url?: WordPressLink;
+                }) => ({
+                  logo_image: imageToUrl(l.logo_image),
+                  logo_url:
+                    typeof l.logo_url === "string"
+                      ? l.logo_url
+                      : typeof l.logo_url === "object" && l.logo_url?.url
+                      ? l.logo_url.url
+                      : "",
+                })
+              )
+            : [],
         };
       }
 

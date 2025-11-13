@@ -45,6 +45,14 @@ export interface WordPressHeroSection {
   };
 }
 
+export interface WordPressLogoCarouselSection {
+  acf_fc_layout: "logo_carousel_section";
+  logos: {
+    logo_image?: WordPressImage;
+    logo_url?: WordPressLink;
+  }[];
+}
+
 export interface WordPressServicesGridSection {
   acf_fc_layout: "services_grid_section";
   service_cards?: WordPressCard[];
@@ -70,6 +78,7 @@ export interface WordPressContactSection {
 
 export type WordPressFlexibleContentRow =
   | WordPressHeroSection
+  | WordPressLogoCarouselSection
   | WordPressServicesGridSection
   | WordPressCasesSection
   | WordPressStatementSection
@@ -89,6 +98,14 @@ export type Hero = {
     mail?: string;
     image?: WordPressImage;
   } | null;
+};
+
+export type LogoCarousel = {
+  type: "logo_carousel_section";
+  logos: {
+    logo_image?: WordPressImage;
+    logo_url?: WordPressLink;
+  }[];
 };
 
 export type ServicesGrid = {
@@ -123,7 +140,13 @@ export type Contact = {
   title?: string;
 };
 
-export type Section = Hero | ServicesGrid | Cases | Statement | Contact;
+export type Section =
+  | Hero
+  | LogoCarousel
+  | ServicesGrid
+  | Cases
+  | Statement
+  | Contact;
 
 export interface WordPressPage {
   id: number;
