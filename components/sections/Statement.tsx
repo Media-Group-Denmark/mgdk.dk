@@ -33,9 +33,9 @@ export default function Statement(props: {
             </h2>
           </div>
           <div className="md:flex md:justify-between md:items-end">
-            <p className="text-[20px] md:text-[30px] font-[100] leading-relaxed md:leading-tight md:pr-20">
+            <div className="text-[20px] md:text-[30px] font-[100] leading-relaxed md:leading-tight md:pr-20">
               {parse(text ?? "")}
-            </p>
+            </div>
             <div className="flex justify-center items-center md:justify-start mt-8 md:mb-8">
               {button?.button_text && (
                 <Button variant={button.button_variant ?? "primary"} size="lg">
