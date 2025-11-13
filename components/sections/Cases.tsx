@@ -11,7 +11,7 @@ export default function Cases(props: {
 }) {
   const { title, case_cards } = props;
   return (
-    <div className="w-full max-w-[1440px] mx-auto px-3 md:px-8">
+    <div className="w-full max-w-[1440px] mx-auto px-4 md:px-8">
       <h2 className="text-[36px] md:text-[52px] text-center font-medium mb-2 mt-20">
         {title}
       </h2>
