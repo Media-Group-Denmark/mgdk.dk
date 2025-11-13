@@ -18,7 +18,7 @@ export default function Statement(props: {
           "linear-gradient(135deg, rgba(120,120,130,0.35) 0%, rgba(60,60,70,0.85) 55%, rgba(15,15,18,0.95) 100%), radial-gradient(120% 120% at 16% 16%, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0) 55%), radial-gradient(150% 150% at 98% 105%, rgba(10,10,12,0.6) 0%, rgba(10,10,12,0) 70%)",
       }}
     >
-      <div className="w-full max-w-[1440px] lg:px-8 mx-auto">
+      <div className="w-full max-w-[1440px] px-4 lg:px-8 mx-auto">
         <div
           className="flex flex-col gap-6 md:gap-8 rounded-[30px] md:rounded-[36px] px-6 py-18 md:px-16 md:py-16 text-white shadow-[0px_38px_66px_-10px_rgba(0,0,0,0.8)] md:shadow-[0px_60px_140px_-50px_rgba(0,0,0,0.75)]"
           style={{

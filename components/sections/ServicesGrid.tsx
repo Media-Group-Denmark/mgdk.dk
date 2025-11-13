@@ -38,7 +38,7 @@ export default function ServicesGrid(props: {
   const { service_cards = [] } = props;
 
   return (
-    <div className=" bg-[#F2F2F4] lg:py-5">
+    <div className="bg-[#F2F2F4] lg:py-5">
       <div className="lg:px-8 max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 lg:p-1">
         {service_cards.map((card) => {
           const { className: backgroundClass, style: backgroundStyle } =
