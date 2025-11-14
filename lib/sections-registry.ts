@@ -12,6 +12,9 @@ const Statement = dynamic(() => import("../components/sections/Statement"));
 const ContactFormular = dynamic(
   () => import("../components/sections/ContactFormular")
 );
+const HighlightNumbers = dynamic(
+  () => import("../components/sections/HighlightNumbers")
+);
 const Unknown = dynamic(() => import("../components/sections/Unknown"));
 
 export const sectionsRegistry: Record<
@@ -30,7 +33,9 @@ export const sectionsRegistry: Record<
   contact_formular_section: ContactFormular as React.ComponentType<
     Record<string, unknown>
   >,
-
+  highlight_numbers_section: HighlightNumbers as React.ComponentType<
+    Record<string, unknown>
+  >,
   // alt andet → Unknown
 };
 

@@ -84,7 +84,7 @@ export default function MobileNav({
   return (
     <>
       <div className="block md:hidden ">
-        <div className="z-[100] relative">
+        <div className="z-[100] relative mr-[-12px]">
           <Hamburger
             toggled={isOpen}
             toggle={() => setIsOpen(!isOpen)}

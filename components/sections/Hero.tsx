@@ -24,7 +24,7 @@ export default function Hero(props: {
         className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
         priority
       />
-      <div className="md:absolute md:top-0 md:left-0 flex justify-center items-center h-full px-10 ">
+      <div className="md:absolute md:top-0 md:left-0 flex justify-center items-center h-full px-10">
         <LiquidGlass className="w-full max-w-[700px] lg:py-15">
           <h1 className="text-white text-[20px] md:text-[24px] lg:text-[40px] font-normal mb-2">
             {parse(title ?? "")}
