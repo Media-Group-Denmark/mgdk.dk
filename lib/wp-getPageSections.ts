@@ -168,6 +168,32 @@ export async function getPageSectionsBySlug(
         };
       }
 
+      case "highlight_numbers_section": {
+        return {
+          type: "highlight_numbers_section",
+          title: row.title ?? "",
+          text: row.text ?? "",
+          people_stats: row.people_stats
+            ? {
+                title: row.people_stats?.title ?? "",
+                text: row.people_stats?.text ?? "",
+              }
+            : {},
+          location_stats: row.location_stats
+            ? {
+                title: row.location_stats?.title ?? "",
+                text: row.location_stats?.text ?? "",
+              }
+            : {},
+          media_stats: row.media_stats
+            ? {
+                title: row.media_stats?.title ?? "",
+                text: row.media_stats?.text ?? "",
+              }
+            : {},
+        };
+      }
+
       default: {
         const layout = (row as { acf_fc_layout: string }).acf_fc_layout;
         return { type: layout } as Section;

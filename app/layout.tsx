@@ -23,11 +23,7 @@ const twkLausanne = localFont({
       weight: "200",
       style: "normal",
     },
-    {
-      path: "../public/fonts/TWKLausanne-200italic.otf",
-      weight: "200",
-      style: "italic",
-    },
+
     {
       path: "../public/fonts/TWKLausanne-250.otf",
       weight: "250",
@@ -68,6 +64,22 @@ const twkLausanne = localFont({
       path: "../public/fonts/TWKLausanne-900.otf",
       weight: "900",
       style: "normal",
+    },
+    /* Italic */
+    {
+      path: "../public/fonts/TWKLausanne-200italic.otf",
+      weight: "200",
+      style: "italic",
+    },
+    {
+      path: "../public/fonts/TWKLausanne-300italic.otf",
+      weight: "300",
+      style: "italic",
+    },
+    {
+      path: "../public/fonts/TWKLausanne-500italic.otf",
+      weight: "500",
+      style: "italic",
     },
   ],
   variable: "--font-twklausanne",

@@ -76,13 +76,32 @@ export interface WordPressContactSection {
   title?: string;
 }
 
+export interface WordPressHighlightNumbersSection {
+  acf_fc_layout: "highlight_numbers_section";
+  title?: string;
+  text?: string;
+  people_stats?: {
+    title?: string;
+    text?: string;
+  };
+  location_stats?: {
+    title?: string;
+    text?: string;
+  };
+  media_stats?: {
+    title?: string;
+    text?: string;
+  };
+}
+
 export type WordPressFlexibleContentRow =
   | WordPressHeroSection
   | WordPressLogoCarouselSection
   | WordPressServicesGridSection
   | WordPressCasesSection
   | WordPressStatementSection
-  | WordPressContactSection;
+  | WordPressContactSection
+  | WordPressHighlightNumbersSection;
 
 // Output types
 export type Hero = {
@@ -140,13 +159,32 @@ export type Contact = {
   title?: string;
 };
 
+export type HighlightNumbersSection = {
+  type: "highlight_numbers_section";
+  title?: string;
+  text?: string;
+  people_stats: {
+    title?: string;
+    text?: string;
+  };
+  location_stats: {
+    title?: string;
+    text?: string;
+  };
+  media_stats: {
+    title?: string;
+    text?: string;
+  };
+};
+
 export type Section =
   | Hero
   | LogoCarousel
   | ServicesGrid
   | Cases
   | Statement
-  | Contact;
+  | Contact
+  | HighlightNumbersSection;
 
 export interface WordPressPage {
   id: number;
