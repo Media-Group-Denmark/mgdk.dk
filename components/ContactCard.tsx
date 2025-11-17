@@ -16,7 +16,7 @@ export default function ContactCard({
   image?: string;
 }) {
   return (
-    <div className="absolute bottom-10 right-10 hidden md:block">
+    <div className="absolute bottom-10 right-4 hidden md:block">
       <LiquidGlass className="flex items-center gap-4 pr-30">
         <Image
           src={image ?? "/img-placeholder.png"}

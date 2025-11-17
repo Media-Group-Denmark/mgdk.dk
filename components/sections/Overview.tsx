@@ -19,7 +19,7 @@ export default function Overview(props: {
     <div>
       {overview_black_background.map((b) => (
         <div key={b.title} className="bg-[#151619] text-white mb-8">
-          <div className="max-w-[1440px] mx-auto px-4 py-10 flex flex-col md:flex-row gap-4">
+          <div className="max-w-[1440px] 2xl:max-w-[1640px] mx-auto px-4 py-10 flex flex-col md:flex-row gap-4">
             <div className="flex flex-col justify-center gap-4 md:w-1/2">
               <h3 className="text-[20px] md:text-[14px] lg:text-[18px] font-extralight uppercase mb-4">
                 {b.eyebrow_title}
@@ -36,7 +36,7 @@ export default function Overview(props: {
       ))}
       {overview_white_background.map((w) => (
         <div key={w.title} className="bg-white flex flex-col md:flex-row mb-8">
-          <div className="max-w-[1440px] mx-auto px-4 py-10 flex flex-col md:flex-row gap-4">
+          <div className="max-w-[1440px] 2xl:max-w-[1640px] mx-auto px-4 py-10 flex flex-col md:flex-row gap-4">
             <div className="md:w-1/2">
               <h2 className="text-[20px] md:text-[14px] lg:text-[18px] font-extralight uppercase my-8 md:my-0">
                 {parse(w.title ?? "")}

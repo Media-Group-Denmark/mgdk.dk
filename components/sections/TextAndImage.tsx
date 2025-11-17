@@ -12,7 +12,7 @@ export default function TextAndImage(props: {
 }) {
   const { title, text, buttons, image } = props;
   return (
-    <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-4 lg:gap-10 xl:gap-30 justify-center px-4 py-10">
+    <div className="max-w-[1440px] 2xl:max-w-[1640px] mx-auto flex flex-col lg:flex-row gap-4 lg:gap-10 xl:gap-30 justify-center px-4 py-10">
       <Image
         className=" lg:hidden rounded-sm"
         src={image ?? ""}
