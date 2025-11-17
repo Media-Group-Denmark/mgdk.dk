@@ -1,13 +1,10 @@
 import { wp } from "./wp-server";
 import type {
   Section,
-  WordPressCard,
   WordPressFlexibleContentRow,
   WordPressPage,
   WordPressImage,
   WordPressButton,
-  WordPressCaseCard,
-  WordPressLogoCarouselSection,
   WordPressLink,
   WordPressOverviewSection,
 } from "@/types/sections";

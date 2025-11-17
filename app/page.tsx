@@ -1,6 +1,8 @@
 import { getPageSectionsBySlug } from "@/lib/wp-getPageSections";
 import { resolveSectionComponent } from "@/lib/sections-registry";
 
+export const dynamic = 'force-static';
+
 export default async function Home() {
   const { sections } = await getPageSectionsBySlug();
 
