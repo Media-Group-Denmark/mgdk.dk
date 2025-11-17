@@ -94,6 +94,14 @@ export interface WordPressHighlightNumbersSection {
   };
 }
 
+export interface WordPressTextAndImageSection {
+  acf_fc_layout: "text_and_image_section";
+  title?: string;
+  text?: string;
+  buttons?: WordPressButton[];
+  image?: WordPressImage;
+}
+
 export type WordPressFlexibleContentRow =
   | WordPressHeroSection
   | WordPressLogoCarouselSection
@@ -101,7 +109,8 @@ export type WordPressFlexibleContentRow =
   | WordPressCasesSection
   | WordPressStatementSection
   | WordPressContactSection
-  | WordPressHighlightNumbersSection;
+  | WordPressHighlightNumbersSection
+  | WordPressTextAndImageSection;
 
 // Output types
 export type Hero = {
@@ -177,6 +186,14 @@ export type HighlightNumbersSection = {
   };
 };
 
+export type TextAndImageSection = {
+  type: "text_and_image_section";
+  title?: string;
+  text?: string;
+  buttons?: ButtonType[];
+  image?: WordPressImage;
+};
+
 export type Section =
   | Hero
   | LogoCarousel
@@ -184,7 +201,8 @@ export type Section =
   | Cases
   | Statement
   | Contact
-  | HighlightNumbersSection;
+  | HighlightNumbersSection
+  | TextAndImageSection;
 
 export interface WordPressPage {
   id: number;

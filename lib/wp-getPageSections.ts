@@ -193,6 +193,27 @@ export async function getPageSectionsBySlug(
             : {},
         };
       }
+      case "text_and_image_section": {
+        return {
+          type: "text_and_image_section",
+          title: row.title ?? "",
+          text: row.text ?? "",
+          buttons: Array.isArray(row.buttons)
+            ? row.buttons.map((b: WordPressButton) => ({
+                button_text: b?.button_text ?? "",
+                button_variant: (b?.button_variant ??
+                  "primary") as ButtonVariant,
+                button_url:
+                  typeof b?.button_url === "string"
+                    ? b.button_url
+                    : typeof b?.button_url === "object" && b?.button_url?.url
+                    ? b.button_url.url
+                    : "",
+              }))
+            : [],
+          image: imageToUrl(row.image),
+        };
+      }
 
       default: {
         const layout = (row as { acf_fc_layout: string }).acf_fc_layout;
