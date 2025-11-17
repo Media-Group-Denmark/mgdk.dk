@@ -12,8 +12,15 @@ export default function Hero(props: {
   text?: string;
   image?: string;
   buttons?: ButtonType[];
+  contact_card?: {
+    name?: string;
+    title?: string;
+    phone_number?: string;
+    mail?: string;
+    image?: string;
+  } | null;
 }) {
-  const { title, text, image, buttons = [] } = props;
+  const { title, text, image, buttons = [], contact_card } = props;
   return (
     <div className="h-[60vh] md:h-[70vh] lg:h-[90vh] relative">
       <Image
@@ -26,14 +33,14 @@ export default function Hero(props: {
       />
       <div className="md:absolute md:top-0 md:left-0 flex justify-center items-center h-full px-10">
         <LiquidGlass className="w-full max-w-[700px] lg:py-15">
-          <h1 className="text-white text-[20px] md:text-[24px] lg:text-[40px] font-normal mb-2">
+          <h1 className="text-white text-[20px] md:text-[24px] lg:text-[40px] font-extralight mb-2">
             {parse(title ?? "")}
           </h1>
-          <p className="text-[#C5C5C5] text-sm md:text-[15px] mb-4 font-medium">
+          <p className="text-[#C5C5C5] text-sm md:text-[15px] mb-4 font-normal">
             {text}
           </p>
           <Separator className="mb-4" />
-          <div className="flex justify-center md:justify-start gap-4 mt-[38px] md:mt-6">
+          <div className="flex justify-center md:justify-start gap-4 mt-[30px] md:mt-6">
             {buttons.map((button) => (
               <Button
                 variant={button.button_variant}
@@ -46,9 +53,15 @@ export default function Hero(props: {
           </div>
         </LiquidGlass>
       </div>
-      <div className="absolute bottom-10 right-10 hidden md:block">
-        <ContactCard />
-      </div>
+      {contact_card?.name && (
+        <ContactCard
+          name={contact_card.name}
+          title={contact_card.title}
+          phone_number={contact_card.phone_number}
+          mail={contact_card.mail}
+          image={contact_card.image}
+        />
+      )}
     </div>
   );
 }

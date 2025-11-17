@@ -10,7 +10,7 @@ export default function LiquidGlass({
   return (
     <div
       className={cn(
-        "relative p-8 rounded-[5px] bg-[#63636333] bg-blend-hard-light backdrop-blur-[24px] border-[6px] border-[#ffffff0a]",
+        "relative p-8 rounded-[5px] bg-[#63636333] bg-blend-hard-light backdrop-blur-[24px] border-[2px] border-[#ffffff0a]",
         className
       )}
     >
