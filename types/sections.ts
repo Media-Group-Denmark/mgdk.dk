@@ -102,6 +102,20 @@ export interface WordPressTextAndImageSection {
   image?: WordPressImage;
 }
 
+export interface WordPressOverviewSection {
+  acf_fc_layout: "overview_section";
+  overview_black_background?: {
+    eyebrow_title?: string;
+    title?: string;
+    text?: string;
+  }[];
+  overview_white_background?: {
+    title?: string;
+    image?: WordPressImage;
+    text?: string;
+  }[];
+}
+
 export type WordPressFlexibleContentRow =
   | WordPressHeroSection
   | WordPressLogoCarouselSection
@@ -110,7 +124,8 @@ export type WordPressFlexibleContentRow =
   | WordPressStatementSection
   | WordPressContactSection
   | WordPressHighlightNumbersSection
-  | WordPressTextAndImageSection;
+  | WordPressTextAndImageSection
+  | WordPressOverviewSection;
 
 // Output types
 export type Hero = {
@@ -194,6 +209,20 @@ export type TextAndImageSection = {
   image?: WordPressImage;
 };
 
+export type OverviewSection = {
+  type: "overview_section";
+  overview_black_background: {
+    eyebrow_title?: string;
+    title?: string;
+    text?: string;
+  }[];
+  overview_white_background: {
+    title?: string;
+    image?: WordPressImage;
+    text?: string;
+  }[];
+};
+
 export type Section =
   | Hero
   | LogoCarousel
@@ -202,7 +231,8 @@ export type Section =
   | Statement
   | Contact
   | HighlightNumbersSection
-  | TextAndImageSection;
+  | TextAndImageSection
+  | OverviewSection;
 
 export interface WordPressPage {
   id: number;

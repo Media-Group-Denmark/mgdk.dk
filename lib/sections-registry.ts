@@ -18,6 +18,7 @@ const HighlightNumbers = dynamic(
 const TextAndImage = dynamic(
   () => import("../components/sections/TextAndImage")
 );
+const Overview = dynamic(() => import("../components/sections/Overview"));
 const Unknown = dynamic(() => import("../components/sections/Unknown"));
 
 export const sectionsRegistry: Record<
@@ -42,6 +43,7 @@ export const sectionsRegistry: Record<
   text_and_image_section: TextAndImage as React.ComponentType<
     Record<string, unknown>
   >,
+  overview_section: Overview as React.ComponentType<Record<string, unknown>>,
   // alt andet → Unknown
 };
 
