@@ -25,7 +25,7 @@ export function Navbar({ items }: { items: Item[] }) {
 
   return (
     <div className="bg-[#121213] z-10 font-inter sticky top-0">
-      <div className="h-[62px] px-4 md:px-8 flex justify-between items-center max-w-[1440px] mx-auto ">
+      <div className="h-[62px] px-4  flex justify-between items-center max-w-[1440px] mx-auto ">
         <div
           className="text-white text-[26px] font-[900] z-[100] cursor-pointer"
           onClick={() => setIsOpen(false)}

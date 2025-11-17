@@ -20,7 +20,7 @@ export default function HighlightNumbersSection(props: {
   const { title, text, people_stats, location_stats, media_stats } = props;
   return (
     <div className="bg-[#F2F2F4]">
-      <div className="bg-[#F2F2F4] w-full max-w-[1440px] mx-auto px-4 md:px-8">
+      <div className="bg-[#F2F2F4] w-full max-w-[1440px] mx-auto px-4">
         <div className="bg-[#3F2ADB] text-white rounded-[13px] px-12 py-12 lg:px-20 lg:py-16">
           <h2 className="text-[32px] md:text-[52px] text-center mb-10 font-light">
             {parse(title ?? "")}
