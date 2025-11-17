@@ -15,6 +15,9 @@ const ContactFormular = dynamic(
 const HighlightNumbers = dynamic(
   () => import("../components/sections/HighlightNumbers")
 );
+const TextAndImage = dynamic(
+  () => import("../components/sections/TextAndImage")
+);
 const Unknown = dynamic(() => import("../components/sections/Unknown"));
 
 export const sectionsRegistry: Record<
@@ -34,6 +37,9 @@ export const sectionsRegistry: Record<
     Record<string, unknown>
   >,
   highlight_numbers_section: HighlightNumbers as React.ComponentType<
+    Record<string, unknown>
+  >,
+  text_and_image_section: TextAndImage as React.ComponentType<
     Record<string, unknown>
   >,
   // alt andet → Unknown
