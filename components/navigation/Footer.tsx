@@ -20,7 +20,7 @@ export default function Footer({
 }) {
   return (
     <footer className="hidden md:block relative z-10 bg-[#121213] font-inter text-white">
-      <div className="mx-auto flex justify-between w-full max-w-[1440px]  gap-6 pt-14 pb-6 px-8">
+      <div className="mx-auto flex justify-between w-full max-w-[1440px] 2xl:max-w-[1640px] gap-6 pt-14 pb-6 px-8">
         <div>
           <div className="flex text-[56px] font-black uppercase md:text-[64px] lg:text-[72px]">
             <Link href="/">MGDK</Link>
@@ -63,7 +63,7 @@ export default function Footer({
       </div>
       <Separator className="w-full" />
 
-      <div className="flex flex-row w-full max-w-[1440px] px-8 py-6 mx-auto items-center justify-between text-xs text-white md:text-sm lg:text-base">
+      <div className="flex flex-row w-full max-w-[1440px] 2xl:max-w-[1640px] px-8 py-6 mx-auto items-center justify-between text-xs text-white md:text-sm lg:text-base">
         <p>© 2025 Media Group Denmark ApS. All rights reserved</p>
         <p>CVR nr.: 35809295</p>
       </div>

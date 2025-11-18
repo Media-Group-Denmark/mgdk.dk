@@ -20,7 +20,7 @@ const getCardBackground = (color?: string): CardBackground => {
       };
     case "blue":
       return {
-        className: "bg-gradient-to-b from-[#CBE5F5] to-white",
+        className: "bg-gradient-to-b from-[#CBE5F5] to-[#fbfcfd]",
       };
     default:
       return { className: "bg-white" };
@@ -39,7 +39,7 @@ export default function ServicesGrid(props: {
 
   return (
     <div className="bg-[#F2F2F4] lg:py-5">
-      <div className="lg:px-8 max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 lg:p-1">
+      <div className="lg:px-4 max-w-[1440px] 2xl:max-w-[1640px] mx-auto grid grid-cols-1 lg:grid-cols-2 lg:p-1">
         {service_cards.map((card) => {
           const { className: backgroundClass, style: backgroundStyle } =
             getCardBackground(card.background_color);
@@ -49,7 +49,7 @@ export default function ServicesGrid(props: {
               key={card.card_title}
               className={`${backgroundClass} ${
                 card.background_color === "black" ? "text-white" : "text-black"
-              } py-48 px-6 md:rounded-lg lg:m-1`}
+              } py-58 px-6 md:rounded-lg lg:m-1`}
               style={backgroundStyle}
             >
               <h2 className="text-[36px] md:text-[52px] text-center font-medium mb-2">

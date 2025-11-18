@@ -18,6 +18,12 @@ const HighlightNumbers = dynamic(
 const TextAndImage = dynamic(
   () => import("../components/sections/TextAndImage")
 );
+const OverviewBlackBackground = dynamic(
+  () => import("../components/sections/OverviewBlackBackground")
+);
+const OverviewWhiteBackground = dynamic(
+  () => import("../components/sections/OverviewWhiteBackground")
+);
 const Unknown = dynamic(() => import("../components/sections/Unknown"));
 
 export const sectionsRegistry: Record<
@@ -40,6 +46,12 @@ export const sectionsRegistry: Record<
     Record<string, unknown>
   >,
   text_and_image_section: TextAndImage as React.ComponentType<
+    Record<string, unknown>
+  >,
+  overview_section_black: OverviewBlackBackground as React.ComponentType<
+    Record<string, unknown>
+  >,
+  overview_section_white: OverviewWhiteBackground as React.ComponentType<
     Record<string, unknown>
   >,
   // alt andet → Unknown

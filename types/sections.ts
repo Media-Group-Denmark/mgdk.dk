@@ -80,18 +80,11 @@ export interface WordPressHighlightNumbersSection {
   acf_fc_layout: "highlight_numbers_section";
   title?: string;
   text?: string;
-  people_stats?: {
+  stats: {
     title?: string;
     text?: string;
-  };
-  location_stats?: {
-    title?: string;
-    text?: string;
-  };
-  media_stats?: {
-    title?: string;
-    text?: string;
-  };
+    number?: number;
+  }[];
 }
 
 export interface WordPressTextAndImageSection {
@@ -102,6 +95,20 @@ export interface WordPressTextAndImageSection {
   image?: WordPressImage;
 }
 
+export interface WordPressOverviewSectionBlackBackground {
+  acf_fc_layout: "overview_section_black";
+  eyebrow_title?: string;
+  title?: string;
+  text?: string;
+}
+
+export interface WordPressOverviewSectionWhiteBackground {
+  acf_fc_layout: "overview_section_white";
+  title?: string;
+  image?: WordPressImage;
+  text?: string;
+}
+
 export type WordPressFlexibleContentRow =
   | WordPressHeroSection
   | WordPressLogoCarouselSection
@@ -110,7 +117,9 @@ export type WordPressFlexibleContentRow =
   | WordPressStatementSection
   | WordPressContactSection
   | WordPressHighlightNumbersSection
-  | WordPressTextAndImageSection;
+  | WordPressTextAndImageSection
+  | WordPressOverviewSectionBlackBackground
+  | WordPressOverviewSectionWhiteBackground;
 
 // Output types
 export type Hero = {
@@ -172,18 +181,11 @@ export type HighlightNumbersSection = {
   type: "highlight_numbers_section";
   title?: string;
   text?: string;
-  people_stats: {
+  stats: {
     title?: string;
     text?: string;
-  };
-  location_stats: {
-    title?: string;
-    text?: string;
-  };
-  media_stats: {
-    title?: string;
-    text?: string;
-  };
+    number?: number;
+  }[];
 };
 
 export type TextAndImageSection = {
@@ -194,6 +196,20 @@ export type TextAndImageSection = {
   image?: WordPressImage;
 };
 
+export type OverviewSectionBlackBackground = {
+  type: "overview_section_black";
+  eyebrow_title?: string;
+  title?: string;
+  text?: string;
+};
+
+export type OverviewSectionWhiteBackground = {
+  type: "overview_section_white";
+  title?: string;
+  image?: WordPressImage;
+  text?: string;
+};
+
 export type Section =
   | Hero
   | LogoCarousel
@@ -202,7 +218,9 @@ export type Section =
   | Statement
   | Contact
   | HighlightNumbersSection
-  | TextAndImageSection;
+  | TextAndImageSection
+  | OverviewSectionBlackBackground
+  | OverviewSectionWhiteBackground;
 
 export interface WordPressPage {
   id: number;

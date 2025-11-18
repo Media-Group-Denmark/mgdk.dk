@@ -20,7 +20,7 @@ export default function FooterMobile({
 }) {
   return (
     <footer className="md:hidden relative z-10 bg-[#121213] font-inter text-white">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-4  pt-14 pb-4 ">
+      <div className="mx-auto flex w-full max-w-[1440px] 2xl:max-w-[1640px] flex-col items-center gap-4  pt-14 pb-4 ">
         <div className="flex items-center text-[56px] font-black uppercase">
           <Link href="/">MGDK</Link>
           <span className="text-primary">.</span>

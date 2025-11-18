@@ -37,7 +37,7 @@ function NavigationMenuList({
     <NavigationMenuPrimitive.List
       data-slot="navigation-menu-list"
       className={cn(
-        "text-white text-[12px] group flex flex-1 list-none items-center justify-center gap-8",
+        "text-white text-[16px] group flex flex-1 list-none items-center justify-center gap-8",
         className
       )}
       {...props}
@@ -129,7 +129,7 @@ function NavigationMenuLink({
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-link"
       className={cn(
-        "data-[active=true]:focus:bg-gray-800 data-[active=true]:hover:bg-gray-800 data-[active=true]:bg-gray-800/50 data-[active=true]:text-white hover:bg-gray-800 hover:text-white focus:bg-gray-800 focus:text-white focus-visible:ring-white/50 [&_svg:not([class*='text-'])]:text-gray-300 flex flex-col gap-1 rounded-sm p-2 text-sm transition-all duration-200 outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4",
+        "data-[active=true]:focus:bg-gray-800 data-[active=true]:hover:bg-gray-800 data-[active=true]:bg-gray-800/50 data-[active=true]:text-white hover:bg-gray-800 hover:text-white focus:bg-gray-800 focus:text-white focus-visible:ring-white/50 [&_svg:not([class*='text-'])]:text-gray-300 flex flex-col gap-1 rounded-sm p-2 transition-all duration-200 outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}
