@@ -24,6 +24,7 @@ const OverviewBlackBackground = dynamic(
 const OverviewWhiteBackground = dynamic(
   () => import("../components/sections/OverviewWhiteBackground")
 );
+const Image = dynamic(() => import("../components/sections/Image"));
 const Unknown = dynamic(() => import("../components/sections/Unknown"));
 
 export const sectionsRegistry: Record<
@@ -54,6 +55,7 @@ export const sectionsRegistry: Record<
   overview_section_white: OverviewWhiteBackground as React.ComponentType<
     Record<string, unknown>
   >,
+  image_section: Image as React.ComponentType<Record<string, unknown>>,
   // alt andet → Unknown
 };
 

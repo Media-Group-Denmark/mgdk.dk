@@ -22,7 +22,7 @@ export default function HighlightNumbersSection(props: {
             </h2>
           )}
           <div className="bg-[#4934E0] rounded-[13px] px-6 py-12 sm:px-10 sm:py-16 lg:px-16 lg:py-20">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-20 justify-items-center items-center">
+            <div className="flex flex-col md:flex-row gap-16 lg:gap-20 justify-between items-center">
               {stats.map((stat, index) => (
                 <HighlightNumberCard
                   key={index}

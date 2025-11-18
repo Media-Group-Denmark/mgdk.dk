@@ -24,11 +24,11 @@ export default function Cases(props: {
             <h3 className="text-[32px] md:text-[48px] font-medium mb-2">
               {card.case_title}
             </h3>
-            <p className="text-[20px] text-center md:text-[28px] font-light mb-4">
+            <p className="text-[20px] text-center md:text-[24px] font-light mb-4">
               {card.case_text}
             </p>
             <Button variant="primary" size="md">
-              <Link href={card.case_url ?? ""}>{card.case_title}</Link>
+              <Link href={card.case_url ?? ""}>Se mere</Link>
             </Button>
           </div>
         ))}
