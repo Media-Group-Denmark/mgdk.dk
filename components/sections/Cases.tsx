@@ -15,7 +15,7 @@ export default function Cases(props: {
       <h2 className="text-[36px] md:text-[52px] text-center font-medium mb-2 mt-20">
         {title}
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4 py-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 py-10">
         {case_cards?.map((card, index) => (
           <div
             key={index}
