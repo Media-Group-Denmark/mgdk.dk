@@ -21,7 +21,7 @@ export default function TextAndImage(props: {
         height={1000}
       />
       <div>
-        <h2 className="text-[32px] md:text-[52px] mt-10 font-extralight uppercase">
+        <h2 className="text-[20px] mt-10 font-extralight uppercase">
           {parse(title ?? "")}
         </h2>
         <div className="text-[18px] md:text-[18px] font-extralight mt-4">

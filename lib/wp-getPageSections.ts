@@ -6,7 +6,6 @@ import type {
   WordPressImage,
   WordPressButton,
   WordPressLink,
-  WordPressOverviewSection,
 } from "@/types/sections";
 import type { ButtonVariant, ButtonType } from "@/types/buttonVariants";
 
@@ -143,24 +142,13 @@ export async function getPageSectionsBySlug(
           type: "highlight_numbers_section",
           title: row.title ?? "",
           text: row.text ?? "",
-          people_stats: row.people_stats
-            ? {
-                title: row.people_stats.title ?? "",
-                text: row.people_stats.text ?? "",
-              }
-            : {},
-          location_stats: row.location_stats
-            ? {
-                title: row.location_stats.title ?? "",
-                text: row.location_stats.text ?? "",
-              }
-            : {},
-          media_stats: row.media_stats
-            ? {
-                title: row.media_stats.title ?? "",
-                text: row.media_stats.text ?? "",
-              }
-            : {},
+          stats: Array.isArray(row.stats)
+            ? row.stats.map((s) => ({
+                number: s?.number ?? 0,
+                title: s?.title ?? "",
+                text: s?.text ?? "",
+              }))
+            : [],
         };
       }
       case "text_and_image_section": {
@@ -173,28 +161,21 @@ export async function getPageSectionsBySlug(
         };
       }
 
-      case "overview_section": {
-        const overviewRow = row as WordPressOverviewSection;
+      case "overview_section_black": {
         return {
-          type: "overview_section",
-          overview_black_background: Array.isArray(
-            overviewRow.overview_black_background
-          )
-            ? overviewRow.overview_black_background.map((b) => ({
-                eyebrow_title: b.eyebrow_title ?? "",
-                title: b.title ?? "",
-                text: b.text ?? "",
-              }))
-            : [],
-          overview_white_background: Array.isArray(
-            overviewRow.overview_white_background
-          )
-            ? overviewRow.overview_white_background.map((w) => ({
-                title: w.title ?? "",
-                image: imageToUrl(w.image),
-                text: w.text ?? "",
-              }))
-            : [],
+          type: "overview_section_black",
+          eyebrow_title: row.eyebrow_title ?? "",
+          title: row.title ?? "",
+          text: row.text ?? "",
+        };
+      }
+
+      case "overview_section_white": {
+        return {
+          type: "overview_section_white",
+          title: row.title ?? "",
+          image: imageToUrl(row.image),
+          text: row.text ?? "",
         };
       }
 

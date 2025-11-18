@@ -3,7 +3,7 @@ export default function HighlightNumberCard({
   title,
   text,
 }: {
-  number: string;
+  number?: number;
   title: string;
   text: string;
 }) {

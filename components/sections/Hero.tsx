@@ -34,7 +34,7 @@ export default function Hero(props: {
       <div className="relative max-w-[1440px] 2xl:max-w-[1640px] h-full mx-auto">
         <div className="md:absolute md:top-0 md:left-0 flex justify-center items-center h-full px-4">
           <LiquidGlass className="w-full max-w-[800px] lg:py-20">
-            <h1 className="text-white text-[24px] md:text-[30px] lg:text-[52px] font-extralight mb-2 leading-15">
+            <h1 className="text-white text-[24px] md:text-[30px] lg:text-[52px] font-extralight mb-2 leading-7 md:leading-15">
               {parse(title ?? "")}
             </h1>
             <p className="text-[#C5C5C5] text-sm md:text-[15px] lg:text-[18px] mb-4 font-normal">
