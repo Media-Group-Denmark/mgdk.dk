@@ -15,7 +15,7 @@ export default function Cases(props: {
       <h2 className="text-[36px] md:text-[52px] text-center font-medium mb-2 mt-20">
         {title}
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4 py-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 py-10">
         {case_cards?.map((card, index) => (
           <div
             key={index}
@@ -24,11 +24,11 @@ export default function Cases(props: {
             <h3 className="text-[32px] md:text-[48px] font-medium mb-2">
               {card.case_title}
             </h3>
-            <p className="text-[20px] text-center md:text-[28px] font-light mb-4">
+            <p className="text-[20px] text-center md:text-[24px] font-light mb-4">
               {card.case_text}
             </p>
             <Button variant="primary" size="md">
-              <Link href={card.case_url ?? ""}>{card.case_title}</Link>
+              <Link href={card.case_url ?? ""}>Se mere</Link>
             </Button>
           </div>
         ))}

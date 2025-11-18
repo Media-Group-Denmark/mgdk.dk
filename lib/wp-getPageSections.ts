@@ -179,6 +179,13 @@ export async function getPageSectionsBySlug(
         };
       }
 
+      case "image_section": {
+        return {
+          type: "image_section",
+          image: imageToUrl(row.image),
+        };
+      }
+
       default: {
         const layout = (row as { acf_fc_layout: string }).acf_fc_layout;
         return { type: layout } as Section;
