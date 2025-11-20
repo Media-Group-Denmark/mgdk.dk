@@ -97,12 +97,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${twkLausanne.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${twkLausanne.variable} h-full`}
+    >
       <body
         className={`${twkLausanne.className} antialiased flex flex-col min-h-screen`}
       >
         <Navbar />
-        {children}
+        <main className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>
