@@ -25,24 +25,10 @@ export default function FooterMobile({
           <Link href="/">MGDK</Link>
           <span className="text-primary">.</span>
         </div>
-        <div className="flex w-full items-center justify-center mt-4 gap-14">
+        <div className="flex w-full items-center justify-center mt-4 gap-14 mb-8 md:mb-0">
           <FooterRow title="Nav Row 1" items={footerRow1} />
           <FooterRow title="Nav Row 2" items={footerRow2} />
         </div>
-        <div className="flex flex-col justify-center items-center gap-4 mt-8 mb-8">
-          <Link
-            href="/media-kit"
-            className="text-[19px] uppercase  text-white/70"
-          >
-            Media kit
-          </Link>
-          <Button variant="outline-white" size="lg">
-            <Link href="/" className="inline-flex w-full justify-center">
-              Hent nu
-            </Link>
-          </Button>
-        </div>
-
         <div className="flex flex-col justify-center items-center text-center gap-2 text-base text-white">
           <Link href="mailto:info@mgdk.dk" className="block">
             info@mgdk.dk
