@@ -6,6 +6,7 @@ import Link from "next/link";
 import ContactCard from "@/components/ContactCard";
 import type { ButtonType } from "@/types/buttonVariants";
 import parse from "html-react-parser";
+import { getLinkPath } from "@/lib/utils";
 
 export default function Hero(props: {
   title?: string;
@@ -48,7 +49,13 @@ export default function Hero(props: {
                   size="md"
                   key={button.button_text}
                 >
-                  <Link href={button.button_url}>{button.button_text}</Link>
+                  <Link
+                    href={
+                      button.button_url ? getLinkPath(button.button_url) : ""
+                    }
+                  >
+                    {button.button_text}
+                  </Link>
                 </Button>
               ))}
             </div>

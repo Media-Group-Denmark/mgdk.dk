@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { getLinkPath } from "@/lib/utils";
 
 export default function Cases(props: {
   title?: string;
@@ -28,7 +29,9 @@ export default function Cases(props: {
               {card.case_text}
             </p>
             <Button variant="primary" size="md">
-              <Link href={card.case_url ?? ""}>Se mere</Link>
+              <Link href={card.case_url ? getLinkPath(card.case_url) : ""}>
+                Se mere
+              </Link>
             </Button>
           </div>
         ))}

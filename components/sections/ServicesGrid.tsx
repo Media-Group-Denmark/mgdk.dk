@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import type { ButtonType } from "@/types/buttonVariants";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { getLinkPath } from "@/lib/utils";
 
 type CardBackground = { className: string; style?: CSSProperties };
 
@@ -60,14 +61,21 @@ export default function ServicesGrid(props: {
               </p>
               <div className="flex justify-center gap-4">
                 {card.buttons?.map((button) => {
-                  const url = button.button_url || "#";
                   return (
                     <Button
                       key={button.button_text}
                       variant={button.button_variant}
                       size="lg"
                     >
-                      <Link href={url}>{button.button_text}</Link>
+                      <Link
+                        href={
+                          button.button_url
+                            ? getLinkPath(button.button_url)
+                            : ""
+                        }
+                      >
+                        {button.button_text}
+                      </Link>
                     </Button>
                   );
                 })}

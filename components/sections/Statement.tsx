@@ -2,6 +2,7 @@ import type { ButtonType } from "@/types/buttonVariants";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import parse from "html-react-parser";
+import { getLinkPath } from "@/lib/utils";
 
 export default function Statement(props: {
   title?: string;
@@ -39,7 +40,11 @@ export default function Statement(props: {
             <div className="flex justify-center items-center md:justify-start mt-8 md:mb-8">
               {button?.button_text && (
                 <Button variant={button.button_variant ?? "primary"} size="lg">
-                  <Link href={button.button_url ?? ""}>
+                  <Link
+                    href={
+                      button.button_url ? getLinkPath(button.button_url) : ""
+                    }
+                  >
                     {button.button_text}
                   </Link>
                 </Button>
