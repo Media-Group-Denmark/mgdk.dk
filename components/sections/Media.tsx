@@ -19,9 +19,9 @@ export default async function Media({ slug }: MediaProps) {
         className="pb-46 lg:pb-56"
       />
       <HighlightNumbersSection
-        title={media?.title.rendered}
-        text={media?.acf?.beskrivelse}
-        stats={media?.acf?.stats ?? []}
+        title={media?.acf?.stats_section?.title ?? ""}
+        text={media?.acf?.stats_section?.text ?? ""}
+        stats={media?.acf?.stats_section?.stats ?? []}
       />
     </div>
   );

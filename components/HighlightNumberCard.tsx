@@ -32,7 +32,7 @@ export default function HighlightNumberCard({
     );
 
     const startAnimation = () => {
-      const maxDuration = 3000;
+      const maxDuration = 2000;
       const intervalTime = 20;
       const maxSteps = maxDuration / intervalTime;
       const increment = Math.max(1, Math.ceil(number / maxSteps));

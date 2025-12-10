@@ -10,11 +10,15 @@ export interface WordPressMedier {
   acf?: {
     beskrivelse?: string;
     logo?: WordPressImage;
-    stats?: {
-      number?: number;
+    stats_section?: {
       title?: string;
       text?: string;
-    }[];
+      stats?: {
+        number?: number;
+        title?: string;
+        text?: string;
+      }[];
+    };
   };
 }
 
