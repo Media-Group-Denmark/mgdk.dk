@@ -5,12 +5,13 @@ export default function OverviewWhiteBackground(props: {
   title?: string;
   image?: string;
   text?: string;
+  className?: string;
 }) {
-  const { title, image, text } = props;
+  const { title, image, text, className } = props;
   return (
     <div
       key={title}
-      className="bg-white flex flex-col md:flex-row pb-8 md:pt-20"
+      className={`bg-white flex flex-col md:flex-row pb-8 md:pt-20 ${className}`}
     >
       <div className="max-w-[1440px] 2xl:max-w-[1640px] mx-auto px-4 py-10 flex flex-col md:flex-row gap-4">
         <div className="md:w-1/2">
