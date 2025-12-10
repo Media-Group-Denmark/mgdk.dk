@@ -25,6 +25,8 @@ const OverviewWhiteBackground = dynamic(
   () => import("../components/sections/OverviewWhiteBackground")
 );
 const Image = dynamic(() => import("../components/sections/Image"));
+const Medias = dynamic(() => import("../components/sections/Medias"));
+const Media = dynamic(() => import("../components/sections/Media"));
 const Unknown = dynamic(() => import("../components/sections/Unknown"));
 
 export const sectionsRegistry: Record<
@@ -56,6 +58,8 @@ export const sectionsRegistry: Record<
     Record<string, unknown>
   >,
   image_section: Image as React.ComponentType<Record<string, unknown>>,
+  medias_section: Medias as React.ComponentType<Record<string, unknown>>,
+  media_section: Media as React.ComponentType<unknown>,
   // alt andet → Unknown
 };
 
