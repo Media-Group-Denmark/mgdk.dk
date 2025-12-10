@@ -32,16 +32,22 @@ export default function HighlightNumberCard({
     );
 
     const startAnimation = () => {
+      const maxDuration = 3000;
+      const intervalTime = 20;
+      const maxSteps = maxDuration / intervalTime;
+      const increment = Math.max(1, Math.ceil(number / maxSteps));
+
       let current = 0;
       const interval = setInterval(() => {
-        current += 1;
-        setDisplayNumber(current);
+        current += increment;
+        setDisplayNumber(Math.min(current, number));
 
         if (current >= number) {
           setDisplayNumber(number);
           clearInterval(interval);
         }
-      }, 20);
+      }, intervalTime);
+
       return () => clearInterval(interval);
     };
 
@@ -57,11 +63,15 @@ export default function HighlightNumberCard({
   }, [number, hasAnimated]);
 
   return (
-    <div ref={cardRef} className="font-medium italic ">
-      <p className="text-[92px] leading-[1]">{displayNumber}</p>
+    <div ref={cardRef} className="font-medium italic flex flex-col w-full">
+      <div className=" text-left">
+        <p className="text-[92px] leading-[1] inline-block w-[250px]">
+          {displayNumber ?? 0}
+        </p>
+      </div>
 
-      <h3 className="text-[12px] uppercase my-3">{title}</h3>
-      <p className="text-[12px] max-w-[200px]">{text}</p>
+      <p className="text-[12px] uppercase my-3 text-left">{title}</p>
+      <p className="text-[12px] max-w-[200px] text-left">{text}</p>
     </div>
   );
 }

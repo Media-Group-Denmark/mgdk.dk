@@ -21,15 +21,19 @@ export default function HighlightNumbersSection(props: {
               {parse(title)}
             </h2>
           )}
-          <div className="bg-[#4934E0] rounded-[13px] px-6 py-12 sm:px-10 sm:py-16 lg:px-16 lg:py-20">
-            <div className="flex flex-col md:flex-row gap-16 lg:gap-20 justify-between items-center">
+          <div className="relative bg-[#4934E0] rounded-[13px] px-6 py-12 sm:px-10 sm:py-16 lg:px-16 lg:py-20">
+            <div className="relative flex flex-col md:flex-row gap-16 lg:gap-20 justify-between items-center">
               {stats.map((stat, index) => (
-                <HighlightNumberCard
+                <div
                   key={index}
-                  number={stat.number ?? 0}
-                  title={stat.title ?? ""}
-                  text={stat.text ?? ""}
-                />
+                  className="flex-1 flex justify-center items-center"
+                >
+                  <HighlightNumberCard
+                    number={stat.number ?? 0}
+                    title={stat.title ?? ""}
+                    text={stat.text ?? ""}
+                  />
+                </div>
               ))}
             </div>
           </div>
