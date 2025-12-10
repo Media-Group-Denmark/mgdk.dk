@@ -10,7 +10,7 @@ import type {
 import type { ButtonVariant, ButtonType } from "@/types/buttonVariants";
 
 //Wordpress image to url
-function imageToUrl(img: WordPressImage): string | undefined {
+export function imageToUrl(img: WordPressImage): string | undefined {
   if (!img) return undefined;
   if (typeof img === "number") return undefined;
   if (typeof img === "string") return img;
@@ -19,7 +19,7 @@ function imageToUrl(img: WordPressImage): string | undefined {
 }
 
 //Wordpress link to url
-function linkToUrl(link: WordPressLink): string {
+export function linkToUrl(link: WordPressLink): string {
   if (!link) return "";
   if (typeof link === "string") return link;
   if (typeof link === "object" && link.url) return link.url;
@@ -47,7 +47,9 @@ export async function getPageSectionsBySlug(
 ): Promise<{ id: number; title: string; sections: Section[] }> {
   let page: WordPressPage | undefined;
 
-  if (!slug) {
+  if (slug?.startsWith("medier/")) {
+    page = (await wp(`/wp/v2/pages/383?_fields=id,title,acf`)) as WordPressPage;
+  } else if (!slug) {
     page = (await wp(`/wp/v2/pages/119?_fields=id,title,acf`)) as WordPressPage;
   } else {
     const list = (await wp(
@@ -183,6 +185,20 @@ export async function getPageSectionsBySlug(
         return {
           type: "image_section",
           image: imageToUrl(row.image),
+        };
+      }
+      case "medias_section": {
+        return {
+          type: "medias_section",
+        };
+      }
+      case "media_section": {
+        const mediaSlug = slug?.startsWith("medier/")
+          ? slug.replace("medier/", "")
+          : undefined;
+        return {
+          type: "media_section",
+          slug: mediaSlug,
         };
       }
 

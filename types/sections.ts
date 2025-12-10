@@ -114,6 +114,15 @@ export interface WordPressImageSection {
   image?: WordPressImage;
 }
 
+export interface WordPressMediasSection {
+  acf_fc_layout: "medias_section";
+}
+
+export interface WordPressMediaSection {
+  acf_fc_layout: "media_section";
+  slug?: string;
+}
+
 export type WordPressFlexibleContentRow =
   | WordPressHeroSection
   | WordPressLogoCarouselSection
@@ -125,7 +134,9 @@ export type WordPressFlexibleContentRow =
   | WordPressTextAndImageSection
   | WordPressOverviewSectionBlackBackground
   | WordPressOverviewSectionWhiteBackground
-  | WordPressImageSection;
+  | WordPressImageSection
+  | WordPressMediasSection
+  | WordPressMediaSection;
 
 // Output types
 export type Hero = {
@@ -221,6 +232,15 @@ export type ImageSection = {
   image?: WordPressImage;
 };
 
+export type MediasSection = {
+  type: "medias_section";
+};
+
+export type MediaSection = {
+  type: "media_section";
+  slug?: string;
+};
+
 export type Section =
   | Hero
   | LogoCarousel
@@ -232,7 +252,9 @@ export type Section =
   | TextAndImageSection
   | OverviewSectionBlackBackground
   | OverviewSectionWhiteBackground
-  | ImageSection;
+  | ImageSection
+  | MediasSection
+  | MediaSection;
 
 export interface WordPressPage {
   id: number;
