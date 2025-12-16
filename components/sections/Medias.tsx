@@ -11,7 +11,7 @@ export default async function Medias() {
       {medias.reverse().map((media) => (
         <div
           key={media.id}
-          className="bg-white flex flex-col md:flex-row pb-8 md:pt-20"
+          className="bg-white flex flex-col md:flex-row pb-8 md:pt-20 border-b border-gray-200"
         >
           <div className="max-w-[1440px] 2xl:max-w-[1640px] mx-auto px-4 py-10 flex flex-col md:flex-row gap-4">
             <div className="md:w-1/2">
@@ -20,7 +20,10 @@ export default async function Medias() {
                   {media.title.rendered}
                 </h2>
               </Link>
-              <div className="h-full flex justify-center items-center">
+              <Link
+                href={`/medier/${media.slug}`}
+                className="h-full flex justify-center items-center"
+              >
                 {media.acf?.logo && (
                   <Image
                     src={imageToUrl(media.acf.logo) ?? ""}
@@ -30,7 +33,7 @@ export default async function Medias() {
                     className="w-[70%] max-h-[300px] object-contain mx-auto mb-18"
                   />
                 )}
-              </div>
+              </Link>
             </div>
             <div className="text-[18px] md:text-[18px] font-extralight md:w-1/2">
               {media.acf?.beskrivelse}
