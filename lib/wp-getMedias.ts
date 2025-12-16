@@ -19,6 +19,11 @@ export interface WordPressMedier {
         text?: string;
       }[];
     };
+    black_background_section?: {
+      eyebrow_title?: string;
+      title?: string;
+      text?: string;
+    };
   };
 }
 
@@ -47,7 +52,6 @@ export async function getMediaBySlug(
       { next: { revalidate: 60 } }
     )) as WordPressMedier[];
 
-    // WordPress returnerer et array, så vi skal tage det første element
     const media = medias?.[0];
 
     if (!media) {

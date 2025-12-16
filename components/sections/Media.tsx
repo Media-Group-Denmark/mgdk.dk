@@ -2,6 +2,7 @@ import { getMediaBySlug } from "@/lib/wp-getMedias";
 import { imageToUrl } from "@/lib/wp-getPageSections";
 import OverviewWhiteBackground from "./OverviewWhiteBackground";
 import HighlightNumbersSection from "./HighlightNumbers";
+import OverviewBlackBackground from "./OverviewBlackBackground";
 
 interface MediaProps {
   slug: string;
@@ -12,6 +13,13 @@ export default async function Media({ slug }: MediaProps) {
 
   return (
     <div>
+      <OverviewBlackBackground
+        eyebrow_title={
+          media?.acf?.black_background_section?.eyebrow_title ?? ""
+        }
+        title={media?.acf?.black_background_section?.title ?? ""}
+        text={media?.acf?.black_background_section?.text ?? ""}
+      />
       <OverviewWhiteBackground
         title={media?.title.rendered}
         image={imageToUrl(media?.acf?.logo)}
