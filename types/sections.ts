@@ -10,6 +10,8 @@ export type WordPressImage =
 
 export type WordPressLink = string | { url?: string } | null | undefined;
 
+export type PostCategory = "no-category" | "news" | "campaign" | "case";
+
 export interface WordPressButton {
   button_text?: string;
   button_variant?: ButtonVariant;
@@ -61,7 +63,7 @@ export interface WordPressServicesGridSection {
 export interface WordPressCasesSection {
   acf_fc_layout: "case_section";
   title?: string;
-  case_cards?: WordPressCaseCard[];
+  category?: PostCategory;
 }
 
 export interface WordPressStatementSection {
@@ -175,11 +177,7 @@ export type ServicesGrid = {
 export type Cases = {
   type: "case_section";
   title?: string;
-  case_cards: {
-    case_title?: string;
-    case_text?: string;
-    case_url?: string;
-  }[];
+  category: PostCategory;
 };
 
 export type Statement = {

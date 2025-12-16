@@ -6,6 +6,7 @@ import type {
   WordPressImage,
   WordPressButton,
   WordPressLink,
+  PostCategory,
 } from "@/types/sections";
 import type { ButtonVariant, ButtonType } from "@/types/buttonVariants";
 
@@ -59,8 +60,11 @@ export async function getPageSectionsBySlug(
   }
 
   const title = page?.title?.rendered ?? "";
-  const rawSections: WordPressFlexibleContentRow[] =
-    page?.acf?.flexible_content ?? [];
+  const rawSections: WordPressFlexibleContentRow[] = Array.isArray(
+    page?.acf?.flexible_content
+  )
+    ? page.acf.flexible_content
+    : [];
 
   const sections: Section[] = rawSections.map((row) => {
     switch (row.acf_fc_layout) {
@@ -113,13 +117,7 @@ export async function getPageSectionsBySlug(
         return {
           type: "case_section",
           title: row.title ?? "",
-          case_cards: Array.isArray(row.case_cards)
-            ? row.case_cards.map((c) => ({
-                case_title: c?.case_title ?? "",
-                case_text: c?.case_text ?? "",
-                case_url: linkToUrl(c?.case_url),
-              }))
-            : [],
+          category: row.category as PostCategory,
         };
       }
 
