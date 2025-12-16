@@ -1,4 +1,4 @@
-import { WordPressImage, WordPressLink } from "@/types/sections";
+import { WordPressImage } from "@/types/sections";
 import { wp } from "./wp-server";
 
 export interface WordPressMedier {
