@@ -44,19 +44,17 @@ export default function Hero(props: {
             <Separator className="mb-4" />
             <div className="flex justify-center md:justify-start gap-4 mt-[30px] md:mt-6">
               {buttons.map((button) => (
-                <Button
-                  variant={button.button_variant}
-                  size="md"
-                  key={button.button_text}
+                <Link
+                  href={button.button_url ? getLinkPath(button.button_url) : ""}
                 >
-                  <Link
-                    href={
-                      button.button_url ? getLinkPath(button.button_url) : ""
-                    }
+                  <Button
+                    variant={button.button_variant}
+                    size="md"
+                    key={button.button_text}
                   >
                     {button.button_text}
-                  </Link>
-                </Button>
+                  </Button>
+                </Link>
               ))}
             </div>
           </LiquidGlass>

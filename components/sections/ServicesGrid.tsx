@@ -62,21 +62,19 @@ export default function ServicesGrid(props: {
               <div className="flex justify-center gap-4">
                 {card.buttons?.map((button) => {
                   return (
-                    <Button
-                      key={button.button_text}
-                      variant={button.button_variant}
-                      size="lg"
+                    <Link
+                      href={
+                        button.button_url ? getLinkPath(button.button_url) : ""
+                      }
                     >
-                      <Link
-                        href={
-                          button.button_url
-                            ? getLinkPath(button.button_url)
-                            : ""
-                        }
+                      <Button
+                        key={button.button_text}
+                        variant={button.button_variant}
+                        size="lg"
                       >
                         {button.button_text}
-                      </Link>
-                    </Button>
+                      </Button>
+                    </Link>
                   );
                 })}
               </div>

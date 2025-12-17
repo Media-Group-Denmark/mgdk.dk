@@ -32,17 +32,17 @@ export default function TextAndImage(props: {
           </div>
           <div className="flex justify-center items-center lg:justify-end gap-4 mt-6">
             {buttons?.map((button, index) => (
-              <Button
-                key={index}
-                variant={button.button_variant ?? "primary"}
-                size="lg"
+              <Link
+                href={button.button_url ? getLinkPath(button.button_url) : ""}
               >
-                <Link
-                  href={button.button_url ? getLinkPath(button.button_url) : ""}
+                <Button
+                  key={index}
+                  variant={button.button_variant ?? "primary"}
+                  size="lg"
                 >
                   {button.button_text}
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             ))}
           </div>
         </div>
