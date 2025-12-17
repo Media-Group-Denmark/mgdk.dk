@@ -41,6 +41,7 @@ export default function Statement(props: {
               {button?.button_text && (
                 <Link
                   href={button.button_url ? getLinkPath(button.button_url) : ""}
+                  key={button.button_text}
                 >
                   <Button
                     variant={button.button_variant ?? "primary"}

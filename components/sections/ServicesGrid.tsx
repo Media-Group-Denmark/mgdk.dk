@@ -66,12 +66,9 @@ export default function ServicesGrid(props: {
                       href={
                         button.button_url ? getLinkPath(button.button_url) : ""
                       }
+                      key={button.button_text}
                     >
-                      <Button
-                        key={button.button_text}
-                        variant={button.button_variant}
-                        size="lg"
-                      >
+                      <Button variant={button.button_variant} size="lg">
                         {button.button_text}
                       </Button>
                     </Link>

@@ -28,7 +28,7 @@ export default async function Cases(props: {
               className="flex flex-col "
             >
               <Image
-                src={post.image ?? ""}
+                src={post.image ?? "/img-placeholder.png"}
                 alt={post.title?.rendered ?? ""}
                 width={1000}
                 height={800}

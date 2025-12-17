@@ -46,12 +46,9 @@ export default function Hero(props: {
               {buttons.map((button) => (
                 <Link
                   href={button.button_url ? getLinkPath(button.button_url) : ""}
+                  key={button.button_text}
                 >
-                  <Button
-                    variant={button.button_variant}
-                    size="md"
-                    key={button.button_text}
-                  >
+                  <Button variant={button.button_variant} size="md">
                     {button.button_text}
                   </Button>
                 </Link>
