@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default async function Medias() {
   const medias = await getAllMedias();
-
+  console.log(medias);
   return (
     <div>
       {medias.reverse().map((media) => (
