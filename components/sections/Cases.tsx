@@ -1,6 +1,7 @@
 import { getAllPosts } from "@/lib/wp-getPosts";
 import type { PostCategory } from "@/types/sections";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function Cases(props: {
   title?: string;
@@ -17,7 +18,15 @@ export default async function Cases(props: {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 md:gap-2 py-10">
         {posts?.map((post, index) => {
           return (
-            <div key={post.id || index} className="flex flex-col ">
+            <Link
+              key={post.id || index}
+              href={
+                post.categorySlug
+                  ? `/${post.categorySlug}/${post.slug}`
+                  : `/post/${post.slug}`
+              }
+              className="flex flex-col "
+            >
               <Image
                 src={post.image ?? ""}
                 alt={post.title?.rendered ?? ""}
@@ -28,7 +37,7 @@ export default async function Cases(props: {
               <h3 className="text-[24px]  font-medium mb-2">
                 {post.title?.rendered}
               </h3>
-            </div>
+            </Link>
           );
         })}
       </div>
