@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import type { PostCategory } from "@/types/sections";
 
 export async function generateStaticParams() {
-  // Hent alle posts fra alle kategorier
   const categories: PostCategory[] = ["news", "case", "campaign"];
   const allPosts = await Promise.all(
     categories.map(async (category) => {
@@ -11,7 +10,6 @@ export async function generateStaticParams() {
     })
   );
 
-  // Hent også posts uden kategori ("no-category")
   const uncategorizedPosts = await getAllPosts("no-category", undefined);
 
   return [...allPosts.flat(), ...uncategorizedPosts].map((post) => ({
@@ -19,9 +17,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export const runtime = "edge";
 export const dynamicParams = true;
-export const dynamic = "force-dynamic";
 
 export default async function PostPage({
   params,
