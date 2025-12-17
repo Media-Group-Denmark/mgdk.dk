@@ -34,7 +34,7 @@ export default async function Cases(props: {
                 height={800}
                 className="w-full h-full object-cover rounded-lg bg-gray-100 aspect-square lg:aspect-auto lg:h-[400px]"
               />
-              <h3 className="text-[24px]  font-medium mb-2">
+              <h3 className="text-[24px] font-medium mb-2 mt-4">
                 {post.title?.rendered}
               </h3>
             </Link>
