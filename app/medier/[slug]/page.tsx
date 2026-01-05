@@ -1,16 +1,9 @@
-import { getAllMedias, WordPressMedier } from "@/lib/wp-getMedias";
 import { getPageSectionsBySlug } from "@/lib/wp-getPageSections";
 import { resolveSectionComponent } from "@/lib/sections-registry";
 import { getSectionBackgroundClass } from "@/lib/section-utils";
 import { notFound } from "next/navigation";
 
-export async function generateStaticParams() {
-  const medias = await getAllMedias();
-  return medias.map((media: WordPressMedier) => ({
-    slug: media.slug,
-  }));
-}
-
+export const runtime = "edge";
 export const dynamicParams = true;
 
 export default async function MediaPage({
