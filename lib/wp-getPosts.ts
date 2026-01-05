@@ -92,53 +92,48 @@ async function getFeaturedImageUrl(
 }
 
 /**
- * Mapper de rigtige posts hvis der er en kategori og tilføjer featured image
+ * Henter featured image URL fra post (prøver _embedded først, derefter API)
+ */
+async function getPostFeaturedImage(
+  post: WordPressPosts
+): Promise<string | undefined> {
+  if (post._embedded?.["wp:featuredmedia"]?.[0]) {
+    const media = post._embedded["wp:featuredmedia"][0];
+    return (
+      media.source_url ||
+      media.media_details?.sizes?.full?.source_url ||
+      media.media_details?.sizes?.large?.source_url
+    );
+  }
+
+  // Fallback: Hent manuelt hvis _embedded mangler
+  if (post.featured_media && post.featured_media > 0) {
+    return await getFeaturedImageUrl(post.featured_media);
+  }
+
+  return undefined;
+}
+
+/**
+ * Mapper posts og tilføjer category slug og featured image
  */
 async function enrichPostsWithCategorySlugs(
   posts: WordPressPosts[],
   knownCategorySlug?: string
 ): Promise<WordPressPosts[]> {
-  if (knownCategorySlug) {
-    // Hvis vi kender kategorien, tilføj category slug og hent featured images
-    return Promise.all(
-      posts.map(async (post) => {
-        const image =
-          post.featured_media && post.featured_media > 0
-            ? await getFeaturedImageUrl(post.featured_media)
-            : post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-              post._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes
-                ?.full?.source_url ||
-              post._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes
-                ?.large?.source_url;
-
-        return {
-          ...post,
-          categorySlug: knownCategorySlug,
-          image,
-        };
-      })
-    );
-  }
-
-  // Ellers hent category slug og featured image for hver post
   return Promise.all(
     posts.map(async (post) => {
-      let categorySlug: string | undefined;
-      if (post.categories && post.categories.length > 0) {
+      // Hent kategori slug (brug kendt slug hvis tilgængelig, ellers hent fra API)
+      let categorySlug: string | undefined = knownCategorySlug;
+      if (!categorySlug && post.categories && post.categories.length > 0) {
         const slug = await getCategorySlugById(post.categories[0]);
         if (slug && slug !== "ikke-kategoriseret") {
           categorySlug = slug;
         }
       }
 
-      const image =
-        post.featured_media && post.featured_media > 0
-          ? await getFeaturedImageUrl(post.featured_media)
-          : post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-            post._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes
-              ?.full?.source_url ||
-            post._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes
-              ?.large?.source_url;
+      // Hent featured image
+      const image = await getPostFeaturedImage(post);
 
       return {
         ...post,

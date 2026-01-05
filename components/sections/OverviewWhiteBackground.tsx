@@ -18,15 +18,17 @@ export default function OverviewWhiteBackground(props: {
           <h2 className="text-[20px] md:text-[14px] lg:text-[18px] font-extralight uppercase my-8 md:my-0">
             {parse(title ?? "")}
           </h2>
-          <div className="h-full flex justify-center items-center">
-            <Image
-              src={image ?? ""}
-              alt={title ?? ""}
-              width={1000}
-              height={1000}
-              className="w-[70%] max-h-[300px] object-contain mx-auto mb-18"
-            />
-          </div>
+          {image && (
+            <div className="h-full flex justify-center items-center">
+              <Image
+                src={image ?? ""}
+                alt={title ?? ""}
+                width={1000}
+                height={1000}
+                className="w-[70%] max-h-[300px] object-contain mx-auto mb-18"
+              />
+            </div>
+          )}
         </div>
         <div className="text-[18px] md:text-[18px] font-extralight md:w-1/2">
           {parse(text ?? "")}
