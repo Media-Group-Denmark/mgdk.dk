@@ -2,6 +2,16 @@ import { getAllMedias, WordPressMedier } from "@/lib/wp-getMedias";
 import { getPageSectionsBySlug } from "@/lib/wp-getPageSections";
 import { resolveSectionComponent } from "@/lib/sections-registry";
 import { getSectionBackgroundClass } from "@/lib/section-utils";
+import { notFound } from "next/navigation";
+
+export async function generateStaticParams() {
+  const medias = await getAllMedias();
+  return medias.map((media: WordPressMedier) => ({
+    slug: media.slug,
+  }));
+}
+
+export const dynamicParams = true;
 
 export default async function MediaPage({
   params,
@@ -9,7 +19,11 @@ export default async function MediaPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { sections } = await getPageSectionsBySlug(`medier/${slug}`);
+  const { sections, id } = await getPageSectionsBySlug(`medier/${slug}`);
+  if (!id || id === 0) {
+    notFound();
+  }
+
   return (
     <>
       {sections.map((s, i) => {
@@ -38,12 +52,3 @@ export default async function MediaPage({
     </>
   );
 }
-
-export async function generateStaticParams() {
-  const medias = await getAllMedias();
-  return medias.map((media: WordPressMedier) => ({
-    slug: media.slug,
-  }));
-}
-
-export const dynamic = "force-static";
