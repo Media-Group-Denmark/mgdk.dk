@@ -113,7 +113,7 @@ export default function MobileNav({
                 <motion.div key={item.id} variants={linkItemVariants}>
                   <Link
                     href={slug[index]}
-                    className={`text-white text-[52px] font-[900] uppercase ${
+                    className={`text-white text-[44px] font-[900] uppercase ${
                       pathname === slug[index] ? "underline" : ""
                     }`}
                     onClick={() => setIsOpen(false)}

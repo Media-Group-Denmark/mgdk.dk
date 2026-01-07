@@ -1,5 +1,3 @@
-import parse from "html-react-parser";
-
 export default function OverviewBlackBackground(props: {
   eyebrow_title?: string;
   title?: string;
@@ -13,13 +11,15 @@ export default function OverviewBlackBackground(props: {
           <h3 className="text-[20px] md:text-[14px] lg:text-[18px] font-extralight uppercase mb-4">
             {eyebrow_title}
           </h3>
-          <h2 className="max-w-[500px] text-[52px] md:text-[52px] font-extralight leading-14 mb-18">
-            {parse(title ?? "")}
-          </h2>
+          <h2 
+            className="max-w-[500px] text-[52px] md:text-[52px] font-extralight leading-14 mb-18"
+            dangerouslySetInnerHTML={{ __html: title ?? "" }}
+          />
         </div>
-        <div className="text-[18px] md:text-[18px] font-extralight md:w-1/2">
-          {parse(text ?? "")}
-        </div>
+        <div 
+          className="text-[18px] md:text-[18px] font-extralight md:w-1/2"
+          dangerouslySetInnerHTML={{ __html: text ?? "" }}
+        />
       </div>
     </div>
   );

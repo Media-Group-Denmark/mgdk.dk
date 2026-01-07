@@ -1,5 +1,4 @@
 import Image from "next/image";
-import parse from "html-react-parser";
 
 export default function OverviewWhiteBackground(props: {
   title?: string;
@@ -15,9 +14,10 @@ export default function OverviewWhiteBackground(props: {
     >
       <div className="max-w-[1440px] 2xl:max-w-[1640px] mx-auto px-4 py-10 flex flex-col md:flex-row gap-4">
         <div className="md:w-1/2">
-          <h2 className="text-[20px] md:text-[14px] lg:text-[18px] font-extralight uppercase my-8 md:my-0">
-            {parse(title ?? "")}
-          </h2>
+          <h2 
+            className="text-[20px] md:text-[14px] lg:text-[18px] font-extralight uppercase my-8 md:my-0"
+            dangerouslySetInnerHTML={{ __html: title ?? "" }}
+          />
           {image && (
             <div className="h-full flex justify-center items-center">
               <Image
@@ -30,9 +30,10 @@ export default function OverviewWhiteBackground(props: {
             </div>
           )}
         </div>
-        <div className="text-[18px] md:text-[18px] font-extralight md:w-1/2">
-          {parse(text ?? "")}
-        </div>
+        <div 
+          className="text-[18px] md:text-[18px] font-extralight md:w-1/2"
+          dangerouslySetInnerHTML={{ __html: text ?? "" }}
+        />
       </div>
     </div>
   );

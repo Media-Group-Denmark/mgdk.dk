@@ -2,7 +2,6 @@ import { ButtonType } from "@/types/buttonVariants";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import parse from "html-react-parser";
 import { Separator } from "../ui/separator";
 import { getLinkPath } from "@/lib/utils";
 
@@ -24,12 +23,14 @@ export default function TextAndImage(props: {
           height={1000}
         />
         <div>
-          <h2 className="text-[20px] mt-10 font-extralight uppercase">
-            {parse(title ?? "")}
-          </h2>
-          <div className="text-[18px] md:text-[18px] font-extralight mt-4">
-            {parse(text ?? "")}
-          </div>
+          <h2 
+            className="text-[20px] mt-10 font-extralight uppercase"
+            dangerouslySetInnerHTML={{ __html: title ?? "" }}
+          />
+          <div 
+            className="text-[18px] md:text-[18px] font-extralight mt-4"
+            dangerouslySetInnerHTML={{ __html: text ?? "" }}
+          />
           <div className="flex justify-center items-center lg:justify-end gap-4 mt-6">
             {buttons?.map((button) => (
               <Link
