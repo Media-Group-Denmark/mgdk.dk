@@ -1,7 +1,6 @@
 import type { ButtonType } from "@/types/buttonVariants";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import parse from "html-react-parser";
 import { getLinkPath } from "@/lib/utils";
 
 export default function Statement(props: {
@@ -29,14 +28,16 @@ export default function Statement(props: {
           }}
         >
           <div className="flex flex-col gap-4 md:gap-6">
-            <h2 className="text-[52px] md:text-[52px] text-center md:text-left font-light leading-14">
-              {parse(title ?? "")}
-            </h2>
+            <h2 
+              className="text-[52px] md:text-[52px] text-center md:text-left font-light leading-14"
+              dangerouslySetInnerHTML={{ __html: title ?? "" }}
+            />
           </div>
           <div className="md:flex md:justify-between md:items-end">
-            <div className="text-[20px] md:text-[24px] font-[100] leading-relaxed md:leading-tight md:pr-20">
-              {parse(text ?? "")}
-            </div>
+            <div 
+              className="text-[20px] md:text-[24px] font-[100] leading-relaxed md:leading-tight md:pr-20"
+              dangerouslySetInnerHTML={{ __html: text ?? "" }}
+            />
             <div className="flex justify-center items-center md:justify-start mt-8 md:mb-8">
               {button?.button_text && (
                 <Link

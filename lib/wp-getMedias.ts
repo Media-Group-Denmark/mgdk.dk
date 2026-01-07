@@ -1,5 +1,6 @@
 import { WordPressImage } from "@/types/sections";
 import { wp } from "./wp-server";
+import { imageToUrlAsync } from "./wp-getPageSections";
 
 export interface WordPressMedier {
   id: number;
@@ -7,9 +8,10 @@ export interface WordPressMedier {
     rendered: string;
   };
   slug: string;
+  logoUrl?: string;
   acf?: {
     beskrivelse?: string;
-    logo?: WordPressImage;
+    logo?: number | WordPressImage;
     stats_section?: {
       title?: string;
       text?: string;
@@ -27,6 +29,27 @@ export interface WordPressMedier {
   };
 }
 
+async function getLogoUrl(
+  logo: number | WordPressImage | undefined
+): Promise<string | undefined> {
+  if (!logo) return undefined;
+  return await imageToUrlAsync(logo);
+}
+
+async function enrichMediasWithLogoUrls(
+  medias: WordPressMedier[]
+): Promise<WordPressMedier[]> {
+  return Promise.all(
+    medias.map(async (media) => {
+      const logoUrl = await getLogoUrl(media.acf?.logo);
+      return {
+        ...media,
+        logoUrl,
+      };
+    })
+  );
+}
+
 export async function getAllMedias(): Promise<WordPressMedier[]> {
   try {
     const medias = (await wp(
@@ -34,7 +57,11 @@ export async function getAllMedias(): Promise<WordPressMedier[]> {
       { next: { revalidate: 60 } }
     )) as WordPressMedier[];
 
-    return medias ?? [];
+    if (!medias || medias.length === 0) {
+      return [];
+    }
+
+    return await enrichMediasWithLogoUrls(medias);
   } catch (error) {
     console.error("Error fetching medias:", error);
     return [];
@@ -58,7 +85,8 @@ export async function getMediaBySlug(
       return null;
     }
 
-    return media;
+    const enrichedMedias = await enrichMediasWithLogoUrls([media]);
+    return enrichedMedias[0] ?? null;
   } catch (error) {
     console.error("Error fetching media by slug:", error);
     return null;

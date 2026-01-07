@@ -1,11 +1,9 @@
 import Image from "next/image";
 import { getAllMedias } from "@/lib/wp-getMedias";
-import { imageToUrl } from "@/lib/wp-getPageSections";
 import Link from "next/link";
 
 export default async function Medias() {
   const medias = await getAllMedias();
-  console.log(medias);
   return (
     <div>
       {medias.reverse().map((media) => (
@@ -13,7 +11,7 @@ export default async function Medias() {
           key={media.id}
           className="bg-white flex flex-col md:flex-row pb-8 md:pt-20 border-b border-gray-200"
         >
-          <div className="max-w-[1440px] 2xl:max-w-[1640px] mx-auto px-4 py-10 flex flex-col md:flex-row gap-4">
+          <div className="w-full max-w-[1440px] 2xl:max-w-[1640px] mx-auto px-4 py-10 flex flex-col md:flex-row gap-4">
             <div className="md:w-1/2">
               <Link href={`/medier/${media.slug}`}>
                 <h2 className="text-[20px] md:text-[14px] lg:text-[18px] font-extralight uppercase my-8 md:my-0">
@@ -24,9 +22,9 @@ export default async function Medias() {
                 href={`/medier/${media.slug}`}
                 className="h-full flex justify-center items-center"
               >
-                {media.acf?.logo && (
+                {media.logoUrl && (
                   <Image
-                    src={imageToUrl(media.acf.logo) ?? ""}
+                    src={media.logoUrl}
                     alt={media.title.rendered}
                     width={1000}
                     height={1000}

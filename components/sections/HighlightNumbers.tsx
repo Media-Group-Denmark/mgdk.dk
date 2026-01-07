@@ -1,4 +1,3 @@
-import parse from "html-react-parser";
 import HighlightNumberCard from "../HighlightNumberCard";
 
 export default function HighlightNumbersSection(props: {
@@ -17,9 +16,10 @@ export default function HighlightNumbersSection(props: {
       <div className="bg-[#F2F2F4] w-full max-w-[1440px] 2xl:max-w-[1640px] mx-auto px-4 flex flex-col relative">
         <div className="bg-[#3F2ADB] text-white rounded-[13px] px-6 py-8 sm:px-12 sm:py-12 lg:px-20 lg:py-16 -mt-70 mb-12 lg:mb-16">
           {title && (
-            <h2 className="text-[28px] sm:text-[32px] md:text-[52px] text-center mb-6 sm:mb-10 font-light">
-              {parse(title)}
-            </h2>
+            <h2 
+              className="text-[28px] sm:text-[32px] md:text-[52px] text-center mb-6 sm:mb-10 font-light"
+              dangerouslySetInnerHTML={{ __html: title }}
+            />
           )}
           <div className="relative bg-[#4934E0] rounded-[13px] px-6 py-12 sm:px-10 sm:py-16 lg:px-16 lg:py-20">
             <div className="relative flex flex-col md:flex-row gap-16 lg:gap-20 justify-between items-center">
